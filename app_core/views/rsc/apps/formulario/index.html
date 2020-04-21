@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+    <title>FORMULARIO</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Uso de javaScript">
+    <meta name="keywords" content="HTML5, CSS3, JavaScript">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/javascript.js"></script>
+</head>
+
+<body>
+    <section>
+        <div id='cajaform'>
+            <form id='frm_datos' name="frm_datos">
+                <h2 id="title">FORMULARIO</h2>
+                <input placeholder="Producto" type="text" class='cajatexto' id="txt_Producto" name="txt_Producto"
+                    value="" title='Producto'>
+                <input placeholder="URL de Imagen" type="text" class='cajatexto' id="txt_URL" name="txt_URL" value=""
+                    title='URL'>
+
+                <input type="button" class='boton' id="guardar" name="btn_guardar" title='Guardar' value="Guardar">
+
+            </form>
+        </div>
+        <div id="cajadatos">
+            <table class='tabla' id="tabladatos">
+                <thead>
+                    <td>NRC</td>
+                    <td>URL</td>
+                </thead>
+                <tbody id="cuerpotabla">
+                    <tr onclick="myFunction(this)" id="f1">
+                        <td>Celular</td>
+                        <td><img src="https://www.tiendamexpress.com/content/images/thumbs/0007041_telefono-celular-motorola-g6-plus-azl.jpeg"
+                                alt="" border=3 height=25 width=25></img></td>
+                    </tr>
+                    <tr onclick="myFunction(this)" id="f2">
+                        <td>computadora</td>
+                        <td><img src="https://gollo-prod-grupounicomer.netdna-ssl.com/media/catalog/product/cache/d616385b62b12439970e2fd554c667f2/_/i/_img_14-ck0004la_3.jpg"
+                                alt="" border=3 height=25 width=25></img></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="div_eliminar">
+            <input type="button" class='boton1' id="eliminar" name="btn_eliminar" title='Eliminar' value="Eliminar">
+            <h1 id="label22" >DOBLE CLICK EN LA FILA PARA SELECCIONARLA</h1>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
