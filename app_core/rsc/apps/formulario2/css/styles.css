@@ -6,7 +6,7 @@ html, body {
 
 
 #title {
-    margin-left: 14%;
+    margin-left: 35%;
     font-size: 35px;
     color: #205dad;
 }
@@ -14,8 +14,8 @@ html, body {
 #panel_form{
     position: relative;
     width: 600px;
-    height: 100px;
-    border: 1px solid #AAA;
+    height: 150px;
+    border: 1px solid #000;
     border-radius: 8px;
     background: #F2F2F2;
     margin: 20px 20px;

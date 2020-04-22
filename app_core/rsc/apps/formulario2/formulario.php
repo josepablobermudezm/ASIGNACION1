@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 require_once('mantenimiento.php');
 
 $message = "";
-if (isset($_POST["btn_guardar"])) {
+/*if (isset($_POST["btn_guardar"])) {
     $cedula = $_POST["txt_cedula"];
     $nombre = $_POST["txt_nombre"];
     $apellido1 = $_POST["txt_apellido1"];
@@ -22,10 +22,10 @@ if (isset($_POST["btn_guardar"])) {
 }
 
 if (isset($_POST["btn_eliminar"])) {
-    $codigo = $_POST["txt_cedula"];
+    $cedula = $_POST["txt_cedula"];
 
     $message = eliminarProductos($conexion, $cedula);
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ if (isset($_POST["btn_eliminar"])) {
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="js/alertify.min.js"></script>
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/funciones1.js"></script>
 </head>
 
 <body>
@@ -61,15 +61,13 @@ if (isset($_POST["btn_eliminar"])) {
             <input placeholder="Observaciones: " type="text" class="campo_texto" maxlength="128" value="" tabindex="11" id="txt_observaciones" name="txt_observaciones">
             <input placeholder="Foto: " type="text" class="campo_texto" maxlength="64" value="" tabindex="12" id="txt_foto" name="txt_foto">
             <input type="date" value="" tabindex="13" id="txt_fecha" name="txt_fecha">
-
-            <button class="boton" type="submit" name="btn_guardar" id="btn_guardar">Guardar</button>
-            <button class="boton" type="submit" name="btn_eliminar" id="btn_eliminar" tabindex="8">Eliminar</button>
-            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="9">Eliminar2</button>
+            <button class="boton" type="button" onclick="publicarAxios()" tabindex="13" name="btn_guardar" id="btn_guardar">Guardar</button>
+            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="13">Eliminar</button>
         </form>
     </section>
     <section id="panel_data">
         <form method="post" id="frm_busqueda" name="frm_busqueda">
-            <input type="text" value="" placeholder="Buscar por Nombre o Código del Producto" size="50" name="txt_busq" id="txt_busq" class="search" tabindex="9" onkeyup="cargarProductos(this.value)">
+            <input type="text" value="" placeholder="Buscar por Nombre o cedula De la persona" size="50" name="txt_busq" id="txt_busq" class="search" tabindex="9" onkeyup="cargarProductos(this.value)">
         </form>
         <br><br>
         <div id="resultados">
