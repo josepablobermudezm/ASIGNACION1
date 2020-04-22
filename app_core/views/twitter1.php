@@ -66,7 +66,11 @@ if (isset($_POST['btn_edit'])) {
 
                         </div>
                     </div>
-                    <div id='main_app'><iframe id="window_app" src="" width="100%" height="100%"></iframe></div>
+                    <div id='main_app'>
+                        <button id="exit" onclick="closeApp()">X</button>
+                        <iframe id="window_app" src="" width="100%" height="100%"> 
+                        </iframe>
+                    </div>
                 </div>
             </section>
             <div id="cont_fondos">

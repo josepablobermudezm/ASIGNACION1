@@ -6,13 +6,13 @@ function cargarPosts(dato) {
             datobusqueda: dato
         }
     })
-        .then(function (response) {
-            document.getElementById("main_page").innerHTML = response.data;
+    .then(function (response) {
+        document.getElementById("main_page").innerHTML = response.data;
 
-        })
-        .catch(function (error) {
+    })
+    .catch(function (error) {
 
-        });
+    });
 }
 function Ocultar(){
     document.getElementById("device").style.animation = "fadeout 1s both";
@@ -34,45 +34,45 @@ function recargarElemento(page, element, formdata) {
         .catch(function (error) { //En caso de carga fallida del recurso
 
         });
-}
+    }
 
 
-function cargarPostsFiltrar() {
-    var form = new FormData();
+    function cargarPostsFiltrar() {
+        var form = new FormData();
 
-    form.append('txt_filtrar', document.getElementById("txt_post").value);
-    form.append('btn_filt', true);
-    console.log(document.getElementById("txt_post").value);
-    axios.post('index.php', form)
+        form.append('txt_filtrar', document.getElementById("txt_post").value);
+        form.append('btn_filt', true);
+        console.log(document.getElementById("txt_post").value);
+        axios.post('index.php', form)
         .then(function () {
             recargarElemento("index.php", "main_panel", form);
         })
         .catch(function (error) {
         });
-}
-
-function handleFiles(files) {
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var imageType = /image.*/;
-
-        if (!file.type.match(imageType)) {
-            continue;
-        }
-
-        var img = document.createElement("img");
-        img.classList.add("obj");
-        img.file = file;
     }
 
-    var fullPath = document.getElementById('fileElem').value;
-    if (fullPath) {
-        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-        var filename = fullPath.substring(startIndex);
-        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-            filename = filename.substring(1);
+    function handleFiles(files) {
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+
+            var img = document.createElement("img");
+            img.classList.add("obj");
+            img.file = file;
         }
-        fondo = filename;
+
+        var fullPath = document.getElementById('fileElem').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            fondo = filename;
         //document.getElementById("main_screen").style.backgroundImage = "url(rsc/pics/" + fondo + ")";
     }
 }
@@ -83,16 +83,16 @@ function publicarAJAX() {
     //Tomamos en cuenta ambos casos si es texto o imagen, si es texto enviamos el parametro txt_post con el valor del txt 
     //y si es imagen entonces enviamos el parametro txt_img y la fuente de la imagen
     form.append(document.getElementById("txt_post").value == ""?'txt_img':'txt_post',
-     document.getElementById("txt_post").value == ""?"app_core/resources/files/"+fondo:document.getElementById("txt_post").value);
+       document.getElementById("txt_post").value == ""?"app_core/resources/files/"+fondo:document.getElementById("txt_post").value);
 
     form.append('btn_save', true);
 
     axios.post('index.php', form)
-        .then(function () {
-            cargarPosts('');
-        })
-        .catch(function (error) {
-        });
+    .then(function () {
+        cargarPosts('');
+    })
+    .catch(function (error) {
+    });
 }
 
 var idEdit;/*declaro el idEdit como una variable globarl para poder acceder a ella desde el método editarAJAX*/
@@ -114,11 +114,11 @@ function editarAJAX() {//este es para el método de editar a la par del método 
     form.append('btn_edit', true);
 
     axios.post('index.php', form)
-        .then(function () {
-            cargarPosts('');
-        })
-        .catch(function (error) {
-        });
+    .then(function () {
+        cargarPosts('');
+    })
+    .catch(function (error) {
+    });
 }
 
 function eliminarPost(id) {
@@ -129,11 +129,11 @@ function eliminarPost(id) {
     form.append('btn_eliminar', true);
 
     axios.post('index.php', form)
-        .then(function () {
-            cargarPosts('');
-        })
-        .catch(function (error) {
-        });
+    .then(function () {
+        cargarPosts('');
+    })
+    .catch(function (error) {
+    });
 }
 
 function action(){
@@ -145,12 +145,61 @@ function action(){
 window.addEventListener('load', miFuncionLoad, false);
 
 
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+} else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+}
+
+function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+}
+
+function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    var top = (elmnt.offsetTop - pos2);
+    var leftX = (elmnt.offsetLeft - pos1);
+
+    if(leftX >=0 && top >=0 && top <=98 && leftX<=252){
+        // set the element's new position:
+        elmnt.style.top = top + "px";
+        elmnt.style.left = leftX  + "px";
+    }else{
+
+    }
+}
+
+function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+}
+}
+
+
+
 function miFuncionLoad() {
     setInterval("reloj()", 100);
-/*
-    var home = document.getElementById('btn_home');
-    home.addEventListener('click', closeApp, false);*/
 
+    dragElement(document.getElementById("main_app"));
 
     var home = document.getElementById('lbl_time_top');
     home.addEventListener('click', calendario, false);
@@ -162,7 +211,7 @@ function miFuncionLoad() {
     }
     var fondo = document.getElementById("bck");
     fondo.addEventListener('click', Ocultar, false);
-
+    
     var backs = document.getElementsByClassName('backs');
     for( var i = 0; i < backs.length; i++){
         backs[i].addEventListener('click', CambiarFondo, false);
