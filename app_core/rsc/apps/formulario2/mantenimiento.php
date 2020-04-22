@@ -14,11 +14,6 @@ $conexion = new Conexion($servidor, $usuario, $pass, $base_datos);
 if (isset($_GET['datobusqueda'])) {
     buscarProductos($conexion, $_GET['datobusqueda']);
 }
-/*
-    if(isset($_POST['botonEliminar'])){
-        eliminarProductos($conexion, $_POST['datoeliminar']);
-        echo obtenerProductos($conexion);
-    }*/
 
 if (isset($_POST['botonEliminar'])) {
     $ced = $_POST['cedula'];
@@ -63,10 +58,10 @@ function obtenerProductos($conexion)
 
 function buscarProductos($conexion, $dato)
 {
-    $conexion->consulta("SELECT * FROM tbl_funcionarios WHERE cedula LIKE '%$dato%' OR cedula LIKE '%$dato%' ");
+    $conexion->consulta("SELECT * FROM tbl_funcionarios WHERE cedula LIKE '%$dato%' OR nombre LIKE '%$dato%' OR apellido1 LIKE '%$dato%' OR apellido2 LIKE '%$dato%' ");
     $resultado = "";
     while ($fila = $conexion->extraer_registro()) {
-        $resultado .= "<tr><td>$fila[1]</td><td>$fila[2]</td><td>$fila[3]</td><td>$fila[4]</td><td>$fila[5]</td><td>$fila[6]</td><td>$fila[7]</td><td>$fila[8]</td><td>$fila[9]</td><td>$fila[10]</td><td>$fila[11]</td><td>$fila[12]</td><td>$fila[13]</td><tr>";
+        $resultado .= "<tr><td onclick='getRow(this)'>$fila[1]</td><td onclick='getRow(this)'>$fila[2]</td><td onclick='getRow(this)'>$fila[3]</td><td onclick='getRow(this)'>$fila[4]</td><td onclick='getRow(this)'>$fila[5]</td><td onclick='getRow(this)'>$fila[6]</td><td onclick='getRow(this)'>$fila[7]</td><td onclick='getRow(this)'>$fila[8]</td><td onclick='getRow(this)'>$fila[9]</td><td onclick='getRow(this)'>$fila[10]</td><td onclick='getRow(this)'>$fila[11]</td><td onclick='getRow(this)'>$fila[12]</td><td onclick='getRow(this)'>$fila[13]</td><td onclick='getRow(this)'><tr>";
     }
     echo $resultado; //imprimimos los datos
 }
