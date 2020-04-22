@@ -54,6 +54,10 @@ if (isset($_POST['btn_edit'])) {
                                 <div class='label_icon'>Memory Game</div>
                             </div>
 
+                            <div id='formulario2' class='icons' style="background:url('app_core/rsc/apps/formulario2/icon.png') no-repeat;">
+                                <div class='label_icon'>Formulario2</div>
+                            </div>
+
                             <label>
                                 <div id='bck' class='icons2' style="background:url('background.png');">
                                     <div class='label_icon'>Background</div>

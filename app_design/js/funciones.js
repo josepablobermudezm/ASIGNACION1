@@ -183,7 +183,11 @@ function reloj() {
 
 function openApp() {
     document.getElementById("main_app").style.animation = "fadein 1s both";
-    document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
+    if(this.id == "formulario2"){
+        document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/formulario.php";
+    }else{
+        document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
+    }
 }
 
 function closeApp() {
