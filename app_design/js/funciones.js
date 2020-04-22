@@ -14,6 +14,16 @@ function cargarPosts(dato) {
 
         });
 }
+function Ocultar(){
+    document.getElementById("device").style.animation = "fadeout 1s both";
+}
+
+function CambiarFondo(){
+    var fondo = document.getElementById("main_screen");
+    console.log(this.childNodes[1].src);
+    fondo.style = "background:url"+"('"+this.childNodes[1].src+"') no-repeat; background-position: center; background-size: 100% 100%;";
+    document.getElementById("device").style.animation = "fadein 1s both";
+}
 function recargarElemento(page, element, formdata) {
     axios.post(page, formdata)
         .then(function (response) { //En caso de carga exitosa del recurso
@@ -149,6 +159,13 @@ function miFuncionLoad() {
 
     for (var i = 0; i < icons.length; i++) {
         icons[i].addEventListener('click', openApp, false);
+    }
+    var fondo = document.getElementById("bck");
+    fondo.addEventListener('click', Ocultar, false);
+
+    var backs = document.getElementsByClassName('backs');
+    for( var i = 0; i < backs.length; i++){
+        backs[i].addEventListener('click', CambiarFondo, false);
     }
 }
 

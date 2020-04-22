@@ -20,15 +20,12 @@ if (isset($_POST['btn_edit'])) {
 <body>
     <div id='page'>
         <section id='main'>
-            <section id='device' style="background:url('app_core/rsc/pics/3.jpg') no-repeat;">
+            <section id='device'>
                 <div id='main_screen'>
                     <div id='topbar'><span id='lbl_time_top'></span></div>
                     <input type="date" id="start">
                     <div id='panel'>
                         <div id='panel_icons'>
-
-                        
-
                             <div id='example' class='icons' style="background:url('app_core/rsc/apps/example/icon.png');">
                                 <div class='label_icon'>Example APP</div>
                             </div>
@@ -58,8 +55,7 @@ if (isset($_POST['btn_edit'])) {
                             </div>
 
                             <label>
-                                <input id="fileElem" onchange="handleFiles(this.files)" type="file" name="input-name" style="display: none;" />
-                                <div id='asdf' class='icons2' style="background:url('background.png');">
+                                <div id='bck' class='icons2' style="background:url('background.png');">
                                     <div class='label_icon'>Background</div>
                                 </div>
                             </label>
@@ -69,6 +65,20 @@ if (isset($_POST['btn_edit'])) {
                     <div id='main_app'><iframe id="window_app" src="" width="100%" height="100%"></iframe></div>
                 </div>
             </section>
+            <div id="cont_fondos">
+                <label id="f_titulo">Seleccione el fondo deseado</label>
+                <div id="fondos">
+                    <div class="backs">
+                        <img id="imagen" class="imagenes" src="app_core/rsc/pics/3.jpg">
+                    </div>
+                    <div class="backs">
+                        <img id="imagen" class="imagenes" src="app_core/rsc/pics/4.jpg">
+                    </div>
+                    <div class="backs">
+                        <img id="imagen" class="imagenes" src="app_core/rsc/pics/5.jpg">
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </body>
