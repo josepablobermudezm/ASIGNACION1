@@ -15,7 +15,7 @@
 			$this->servidor = "localhost";
 			$this->usuario = "root";
 			$this->clave = "";
-			$this->base_datos = "bd_producto";
+			$this->base_datos = "bd_funcionarios";
 			$this->conectar_base_datos();
 		}
 
