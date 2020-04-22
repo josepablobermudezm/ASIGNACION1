@@ -62,7 +62,7 @@ if (isset($_POST["btn_eliminar"])) {
             <input placeholder="Foto: " type="text" class="campo_texto" maxlength="64" value="" tabindex="12" id="txt_foto" name="txt_foto">
             <input type="date" value="" tabindex="13" id="txt_fecha" name="txt_fecha">
             <button class="boton" type="button" onclick="publicarAxios()" tabindex="13" name="btn_guardar" id="btn_guardar">Guardar</button>
-            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="13">Eliminar</button>
+            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="14">Eliminar</button>
         </form>
     </section>
     <section id="panel_data">

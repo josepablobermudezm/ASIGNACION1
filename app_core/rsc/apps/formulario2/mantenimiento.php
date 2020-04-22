@@ -21,7 +21,7 @@ if (isset($_GET['datobusqueda'])) {
     }*/
 
 if (isset($_POST['botonEliminar'])) {
-    $ced = $_POST['txt_cedula'];
+    $ced = $_POST['cedula'];
     $conexion->consulta("SELECT cedula FROM tbl_funcionarios WHERE cedula = '$ced'");
     if ($conexion->extraer_registro()) {
         eliminarProductos($conexion, $_POST['cedula']);
@@ -32,8 +32,7 @@ if (isset($_POST['botonEliminar'])) {
 }
 
 if (isset($_POST['btn_save'])) {
-    $ced = $_POST['txt_cedula'];
-    $cedula = $_POST["txt_cedula"];
+    $cedula = $_POST['txt_cedula'];
     $nombre = $_POST["txt_nombre"];
     $apellido1 = $_POST["txt_apellido1"];
     $apellido2 = $_POST["txt_apellido2"];
@@ -46,15 +45,8 @@ if (isset($_POST['btn_save'])) {
     $observaciones = $_POST["txt_observaciones"];
     $foto = $_POST["txt_foto"];
     $fecha = $_POST["txt_fecha"];
-
-    $conexion->consulta("SELECT cedula FROM tbl_funcionarios WHERE cedula = '$ced'");
-    
-    if ($conexion->extraer_registro()) {
-        insertarProductos($conexion, $cedula, $nombre, $apellido1, $apellido2, $telefono, $email, $direccion, $departamento, $puesto, $salario, $observaciones, $foto, $fecha);
-        echo obtenerProductos($conexion);
-    } else {
-        echo "null";
-    }
+    insertarProductos($conexion, $cedula, $nombre, $apellido1, $apellido2, $telefono, $email, $direccion, $departamento, $puesto, $salario, $observaciones, $foto, $fecha);
+    echo obtenerProductos($conexion);
 }
 
 function obtenerProductos($conexion)
@@ -81,7 +73,7 @@ function buscarProductos($conexion, $dato)
 
 function insertarProductos($conexion, $cedula, $nombre, $apellido1, $apellido2, $telefono, $email, $direccion, $departamento, $puesto, $salario, $observaciones, $foto, $fecha)
 {
-    //INSERTAR - ACTUALIZAR - Comprobamos que el código existe buscándolo primero
+    //INSERTAR - ACTUALIZAR - Comprobamos que la cedula existe buscándolo primero
     if (
         $cedula != "" && $nombre != "" && $apellido1 != "" && $apellido2 != "" && $telefono != "" && $email != "" &&
         $direccion != "" && $departamento != "" && $puesto != "" && $salario != "" && $fecha != ""
