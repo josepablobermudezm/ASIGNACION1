@@ -40,17 +40,51 @@ if (isset($_POST['btn_save'])) {
     $observaciones = $_POST["txt_observaciones"];
     $foto = $_POST["txt_foto"];
     $fecha = $_POST["txt_fecha"];
+
+    metodo();
+
     insertarProductos($conexion, $cedula, $nombre, $apellido1, $apellido2, $telefono, $email, $direccion, $departamento, $puesto, $salario, $observaciones, $foto, $fecha);
     echo obtenerProductos($conexion);
+}
+
+function metodo()
+{
+    $postinfo = array();
+    $postinfo[0] = str_replace("'", "\"", uploadFile());
+}
+
+function uploadFile()
+{
+    $img = "";
+
+    if (isset($_FILES['txt_foto'])) {
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($_FILES["txt_foto"]["name"]);
+        move_uploaded_file($_FILES["txt_foto"]["tmp_name"], $target_file);
+
+        $img = "<br> <img src='$target_file' alt='' title='' width='300'/>";
+    }
+
+    return $img;
 }
 
 function obtenerProductos($conexion)
 {
     $conexion->consulta("SELECT * FROM tbl_funcionarios ORDER BY id DESC");
     $datos = "";
-
+    //substr(5,undefined);
     while ($fila = $conexion->extraer_registro()) {
-        $datos .= "<tr><td onclick='getRow(this)'>$fila[1]</td><td onclick='getRow(this)'>$fila[2]</td><td onclick='getRow(this)'>$fila[3]</td><td onclick='getRow(this)'>$fila[4]</td><td onclick='getRow(this)'>$fila[5]</td><td onclick='getRow(this)'>$fila[6]</td><td onclick='getRow(this)'>$fila[7]</td><td onclick='getRow(this)'>$fila[8]</td><td onclick='getRow(this)'>$fila[9]</td><td onclick='getRow(this)'>$fila[10]</td><td onclick='getRow(this)'>$fila[11]</td><td onclick='getRow(this)'>$fila[12]</td><td onclick='getRow(this)'>$fila[13]</td><td onclick='getRow(this)'><tr>";
+        //$imagenTemp = "img/" + $fila[12];
+        //$imagen = str_replace("%C:fakepath%", "", $imagenTemp);
+
+        $DireccionCompleta  = $fila[12];
+        $Eliminar = array("C:fakepath");
+        $CambiarPor   = array("");
+        $DireccionSinError = str_replace($Eliminar, $CambiarPor, $DireccionCompleta);
+
+        $imagen = "img/" . $DireccionSinError; 
+
+        $datos .= "<tr><td onclick='getRow(this)'>$fila[1]</td><td onclick='getRow(this)'>$fila[2]</td><td onclick='getRow(this)'>$fila[3]</td><td onclick='getRow(this)'>$fila[4]</td><td onclick='getRow(this)'>$fila[5]</td><td onclick='getRow(this)'>$fila[6]</td><td onclick='getRow(this)'>$fila[7]</td><td onclick='getRow(this)'>$fila[8]</td><td onclick='getRow(this)'>$fila[9]</td><td onclick='getRow(this)'>$fila[10]</td><td onclick='getRow(this)'>$fila[11]</td><td onclick='getRow(this)'><img src='$imagen' border=3 height=25 width=25></img></td><td onclick='getRow(this)'>$fila[13]</td><td onclick='getRow(this)'><tr>";
     }
 
     return $datos;

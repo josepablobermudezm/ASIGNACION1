@@ -80,6 +80,12 @@ function publicarAxios() {
     formdata.append('txt_fecha', document.getElementById('txt_fecha').value);
     formdata.append("btn_save", document.getElementById('btn_guardar'));
 
+    var imagefile = document.querySelector('#txt_foto');
+
+    if(imagefile.files[0]) {
+        formdata.append("txt_foto", imagefile.files[0]);
+    }
+
     axios.post('mantenimiento.php', formdata)
         .then(function (response) {
             // La carga es exitosa
