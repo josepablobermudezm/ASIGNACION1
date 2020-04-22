@@ -48,8 +48,7 @@ body{
 	height: 100%;
 	z-index: 0;
 	background-position: center;
-	background-image: url('../../app_core/rsc/pics/screen_main.png');
-	background-repeat: no-repeat;
+	
 }
 
 #time{

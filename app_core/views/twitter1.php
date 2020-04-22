@@ -18,9 +18,9 @@ if (isset($_POST['btn_edit'])) {
 ?>
 
 <body>
-    <div id='page'>
-        <section id='main'>
-            <section id='device'>
+    <div id='page' >
+        <section id='main'  >
+            <section id='device'style="background:url('app_core/rsc/pics/3.jpg') no-repeat;"  >
                 <div id='main_screen'>
                     <div id='topbar'><span id='lbl_time_top'></span></div>
                     <div id='panel'>
