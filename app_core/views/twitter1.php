@@ -17,7 +17,7 @@ if (isset($_POST['btn_edit'])) {
 /*para eliminar y editar envio por parametros los id en post*/
 ?>
 
-<div id="panel_app">
+<body>
     <div id='page'>
         <section id='main'>
             <section id='device'>
@@ -25,32 +25,31 @@ if (isset($_POST['btn_edit'])) {
                     <div id='topbar'><span id='lbl_time_top'></span></div>
                     <div id='panel'>
                         <div id='panel_icons'>
-
-                            <div id='example' class='icons' style="background:url('rsc/apps/example/icon.png') no-repeat;">
+                            <div id='example' class='icons' style="background:url('app_core/rsc/apps/example/icon.png');">
                                 <div class='label_icon'>Example APP</div>
                             </div>
 
-                            <div id='bbgame' class='icons' style="background:url('rsc/apps/bbgame/icon.png') no-repeat;">
+                            <div id='bbgame' class='icons' style="background:url('app_core/rsc/apps/bbgame/icon.png') no-repeat;">
                                 <div class='label_icon'>BB Game</div>
                             </div>
 
-                            <div id='calendar' class='icons' style="background:url('rsc/apps/calendar/icon.png') no-repeat;">
+                            <div id='calendar' class='icons' style="background:url('app_core/rsc/apps/calendar/icon.png') no-repeat;">
                                 <div class='label_icon'>Calendar</div>
                             </div>
 
-                            <div id='messenger' class='icons' style="background:url('rsc/apps/messenger/icon.png') no-repeat;">
+                            <div id='messenger' class='icons' style="background:url('app_core/rsc/apps/messenger/icon.png') no-repeat;">
                                 <div class='label_icon'>Messenger</div>
                             </div>
 
-                            <div id='media' class='icons' style="background:url('rsc/apps/media/icon.png') no-repeat;">
+                            <div id='media' class='icons' style="background:url('app_core/rsc/apps/media/icon.png') no-repeat;">
                                 <div class='label_icon'>Media</div>
                             </div>
 
-                            <div id='formulario' class='icons' style="background:url('rsc/apps/formulario/icon.png') no-repeat;">
+                            <div id='formulario' class='icons' style="background:url('app_core/rsc/apps/formulario/icon.png') no-repeat;">
                                 <div class='label_icon'>Formulario</div>
                             </div>
 
-                            <div id='memory' class='icons' style="background:url('rsc/apps/memory/icon.png') no-repeat;">
+                            <div id='memory' class='icons' style="background:url('app_core/rsc/apps/memory/icon.png') no-repeat;">
                                 <div class='label_icon'>Memory Game</div>
                             </div>
 
@@ -64,9 +63,8 @@ if (isset($_POST['btn_edit'])) {
                         </div>
                     </div>
                     <div id='main_app'><iframe id="window_app" src="" width="100%" height="100%"></iframe></div>
-                    <div id='main_menu'></div>
                 </div>
             </section>
         </section>
     </div>
-</div>
+</body>

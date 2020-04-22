@@ -125,3 +125,47 @@ function eliminarPost(id) {
         .catch(function (error) {
         });
 }
+
+function action(){
+
+    console.log(document.getElementById('example').src);
+
+}
+
+window.addEventListener('load', miFuncionLoad, false);
+
+
+function miFuncionLoad() {
+    setInterval("reloj()", 100);
+/*
+    var home = document.getElementById('btn_home');
+    home.addEventListener('click', closeApp, false);*/
+
+    var icons = document.getElementsByClassName('icons');
+
+    for (var i = 0; i < icons.length; i++) {
+        icons[i].addEventListener('click', openApp, false);
+    }
+}
+
+function reloj() {
+
+    var semana = ['Dom', 'Lun', 'Mar', 'Jue', 'Vie', 'Sab']
+    var fecha = new Date;
+    var dia = fecha.getDay();
+    var horas = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    var segundos = fecha.getSeconds();
+
+    document.getElementById("lbl_time_top").innerHTML = semana[dia] + " " + horas + ":" + minutos + ":" + segundos;
+}
+
+function openApp() {
+    document.getElementById("main_app").style.animation = "fadein 1s both";
+    document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
+}
+
+function closeApp() {
+    document.getElementById("main_app").style.animation = "fadeout 1s both";
+    document.getElementById("window_app").src = "";
+}

@@ -1,0 +1,142 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Segoe UI, Century Gothic, Verdana, Arial;
+    Background: #F9F9F9;
+}
+
+#cajaform {
+    position: relative;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin: auto;
+    width: 90%;
+    height: auto;
+}
+
+Label {
+    font-size: 18px;
+    padding-left: 45px;
+}
+
+#title {
+    text-align: center;
+    font-size: 35px;
+    color: #4CAF50;
+}
+
+h1{
+    text-align: left;
+    font-size: 20px;
+    color: gray;
+}
+
+.boton {
+    display: inline-block;
+    position: absolute;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+    bottom: 10px;
+    height: 25px;
+    margin: 0px 10px 0px 10px;
+}
+
+.boton:hover {
+    background: #3e8e41;
+    cursor: pointer;
+}
+
+.boton:active {
+    background-color: #439746;
+    box-shadow: 0 1px rgb(92, 92, 92);
+    transform: translateY(2px);
+}
+
+.boton1 {
+    display: inline-block;
+    position: absolute;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+    margin: 0px 10px 40px 85%;
+}
+
+.boton1:hover {
+    background: #3e8e41;
+    cursor: pointer;
+}
+
+.boton:active {
+    background-color: #439746;
+    box-shadow: 0 1px rgb(92, 92, 92);
+    transform: translateY(2px);
+}
+
+#cajadatos {
+    position: relative;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin: auto;
+    width: 90%;
+    height: 180px;
+    overflow: auto;
+}
+
+#div_eliminar {
+    position: relative;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin: auto;
+    width: 90%;
+    height: 80px;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    cursor: pointer;
+}
+
+thead,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+
+/*Color diferente en forma de zebra*/
+
+tr:nth-child(even) {
+    background-color: #e6e6e6
+}
+
+/*La primera fila con los títulos*/
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/*Cambio de color con hover sobre las filas*/
+
+tr:hover {
+    background-color: #4CAF50;
+}
