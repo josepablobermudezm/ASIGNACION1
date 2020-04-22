@@ -141,6 +141,10 @@ function miFuncionLoad() {
     var home = document.getElementById('btn_home');
     home.addEventListener('click', closeApp, false);*/
 
+
+    var home = document.getElementById('lbl_time_top');
+    home.addEventListener('click', calendario, false);
+
     var icons = document.getElementsByClassName('icons');
 
     for (var i = 0; i < icons.length; i++) {
@@ -168,4 +172,7 @@ function openApp() {
 function closeApp() {
     document.getElementById("main_app").style.animation = "fadeout 1s both";
     document.getElementById("window_app").src = "";
+}
+
+function calendario(){
 }

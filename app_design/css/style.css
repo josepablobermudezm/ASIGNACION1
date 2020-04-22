@@ -76,6 +76,15 @@ body{
 	color: #FFF;
 }
 
+#start{
+	height: 17px; 
+	background:black; 
+	margin-left: 42%; 
+	position: absolute; 
+	visibility: visible; 
+	opacity: 0.4;
+}
+
 #topbar{
 	position: absolute;
 	width: 100%;

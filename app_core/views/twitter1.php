@@ -18,13 +18,17 @@ if (isset($_POST['btn_edit'])) {
 ?>
 
 <body>
-    <div id='page' >
-        <section id='main'  >
-            <section id='device'style="background:url('app_core/rsc/pics/3.jpg') no-repeat;"  >
+    <div id='page'>
+        <section id='main'>
+            <section id='device' style="background:url('app_core/rsc/pics/3.jpg') no-repeat;">
                 <div id='main_screen'>
                     <div id='topbar'><span id='lbl_time_top'></span></div>
+                    <input type="date" id="start">
                     <div id='panel'>
                         <div id='panel_icons'>
+
+                        
+
                             <div id='example' class='icons' style="background:url('app_core/rsc/apps/example/icon.png');">
                                 <div class='label_icon'>Example APP</div>
                             </div>
