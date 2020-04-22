@@ -59,15 +59,15 @@ if (isset($_POST["btn_eliminar"])) {
             <input placeholder="Puesto: " type="text" class="campo_texto" maxlength="32" value="" tabindex="9" id="txt_puesto" name="txt_puesto">
             <input placeholder="Salario: " type="text" class="campo_texto" maxlength="11" value="" tabindex="10" id="txt_salario" name="txt_salario" onKeyPress="return validate(event)">
             <input placeholder="Observaciones: " type="text" class="campo_texto" maxlength="128" value="" tabindex="11" id="txt_observaciones" name="txt_observaciones">
-            <input placeholder="Foto: " type="text" class="campo_texto" maxlength="64" value="" tabindex="12" id="txt_foto" name="txt_foto">
-            <input type="date" value="" tabindex="13" id="txt_fecha" name="txt_fecha">
-            <button class="boton" type="button" onclick="publicarAxios()" tabindex="13" name="btn_guardar" id="btn_guardar">Guardar</button>
-            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="14">Eliminar</button>
+            <input type="date" value="" tabindex="12" id="txt_fecha" name="txt_fecha">
+            <input type="file" name="txt_foto" class="campo_texto" tabindex="13" id="txt_foto" id="txt_file">
+            <button class="boton" type="button" onclick="publicarAxios()" tabindex="14" name="btn_guardar" id="btn_guardar">Guardar</button>
+            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="15">Eliminar</button>
         </form>
     </section>
     <section id="panel_data">
         <form method="post" id="frm_busqueda" name="frm_busqueda">
-            <input type="text" value="" placeholder="Buscar por Nombre o cedula De la persona" size="50" name="txt_busq" id="txt_busq" class="search" tabindex="9" onkeyup="cargarProductos(this.value)">
+            <input type="text" value="" placeholder="Buscar por Nombre o cedula De la persona" size="50" name="txt_busq" id="txt_busq" class="search" tabindex="16" onkeyup="cargarProductos(this.value)">
         </form>
         <br><br>
         <div id="resultados">
