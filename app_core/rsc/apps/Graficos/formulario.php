@@ -4,28 +4,8 @@ ini_set('display_errors', 1);
 require_once('mantenimiento.php');
 
 $message = "";
-/*if (isset($_POST["btn_guardar"])) {
-    $cedula = $_POST["txt_cedula"];
-    $nombre = $_POST["txt_nombre"];
-    $apellido1 = $_POST["txt_apellido1"];
-    $apellido2 = $_POST["txt_apellido2"];
-    $telefono = $_POST["txt_telefono"];
-    $email = $_POST["txt_email"];
-    $direccion = $_POST["txt_direccion"];
-    $departamento = $_POST["txt_departamento"];
-    $puesto = $_POST["txt_puesto"];
-    $salario = $_POST["txt_salario"];
-    $observaciones = $_POST["txt_observaciones"];
-    $foto = $_POST["txt_foto"];
-    $fecha = $_POST["txt_fecha"];
-    $message = insertarProductos($conexion, $cedula, $nombre, $apellido1, $apellido2, $telefono, $email, $direccion, $departamento, $puesto, $salario, $observaciones, $foto, $fecha);
-}
 
-if (isset($_POST["btn_eliminar"])) {
-    $cedula = $_POST["txt_cedula"];
 
-    $message = eliminarProductos($conexion, $cedula);
-}*/
 ?>
 
 <!DOCTYPE html>
@@ -38,61 +18,141 @@ if (isset($_POST["btn_eliminar"])) {
     <link rel="stylesheet" href="css/themes/default.min.css" />
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="js/alertify.min.js"></script>
-    <script type="text/javascript" src="js/funciones1.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
 </head>
 
 <body>
     <?php echo ($message != "") ? "<script> alertify.set('notifier','position', 'top-center'); alertify.success('$message');</script>" : ""; ?>
+    <h2 id="title">GRAFICOS</h2>
+    <form name="form">
+        <input type="checkbox" id="Lineal" name="contact" onClick="javascript:checkBox(0)" value="1">Lineal<br>
+        <input type="checkbox" id="Barras" name="contact" onClick="javascript:checkBox(1)" value="1" checked >Barras<br>
+    </form>
 
-    <h2 id="title">FORMULARIO</h2>
-    <section id="panel_form">
-        <form method="post" id="frm_productos" name="frm_productos" action="formulario.php">
-            <input placeholder="Cédula: " type="text" class="campo_texto" maxlength="9" value="" tabindex="1" id="txt_cedula" name="txt_cedula">
-            <input placeholder="Nombre: " type="text" class="campo_texto" maxlength="32" value="" tabindex="2" id="txt_nombre" name="txt_nombre">
-            <input placeholder="Apellido1: " type="text" class="campo_texto" maxlength="32" value="" tabindex="3" id="txt_apellido1" name="txt_apellido1">
-            <input placeholder="Apellido2: " type="text" class="campo_texto" maxlength="32" value="" tabindex="4" id="txt_apellido2" name="txt_apellido2">
-            <input placeholder="Teléfono: " type="text" class="campo_texto" maxlength="8" value="" tabindex="5" id="txt_telefono" name="txt_telefono">
-            <input placeholder="Email: " type="text" class="campo_texto" maxlength="64" value="" tabindex="6" id="txt_email" name="txt_email">
-            <input placeholder="Dirección: " type="text" class="campo_texto" maxlength="128" value="" tabindex="7" id="txt_direccion" name="txt_direccion">
-            <input placeholder="Departamento: " type="text" class="campo_texto" maxlength="32" value="" tabindex="8" id="txt_departamento" name="txt_departamento">
-            <input placeholder="Puesto: " type="text" class="campo_texto" maxlength="32" value="" tabindex="9" id="txt_puesto" name="txt_puesto">
-            <input placeholder="Salario: " type="text" class="campo_texto" maxlength="11" value="" tabindex="10" id="txt_salario" name="txt_salario" onKeyPress="return validate(event)">
-            <input placeholder="Observaciones: " type="text" class="campo_texto" maxlength="128" value="" tabindex="11" id="txt_observaciones" name="txt_observaciones">
-            <input type="date" value="" tabindex="12" id="txt_fecha" name="txt_fecha">
-            <input type="file" name="txt_foto" class="campo_texto" tabindex="13" id="txt_foto" id="txt_file">
-            <button class="boton" type="button" onclick="publicarAxios()" tabindex="14" name="btn_guardar" id="btn_guardar">Guardar</button>
-            <button class="boton" type="button" onclick="eliminarAxios()" name="btn_eliminarAJAX" id="btn_eliminarAJAX" tabindex="15">Eliminar</button>
-        </form>
-    </section>
-    <section id="panel_data">
-        <form method="post" id="frm_busqueda" name="frm_busqueda">
-            <input type="text" value="" placeholder="Buscar por Nombre o cedula De la persona" size="50" name="txt_busq" id="txt_busq" class="search" tabindex="16" onkeyup="cargarProductos(this.value)">
-        </form>
-        <br><br>
-        <div id="resultados">
-            <table>
-                <thead>
-                    <td>CEDULA</td>
-                    <td>NOMBRE</td>
-                    <td>APELLIDO1</td>
-                    <td>APELLIDO2</td>
-                    <td>TELEFONO</td>
-                    <td>EMAIL</td>
-                    <td>DIRECCION</td>
-                    <td>DEPARTAMENTO</td>
-                    <td>PUESTO</td>
-                    <td>SALARIO</td>
-                    <td>OBSERVACIONES</td>
-                    <td>FOTO</td>
-                    <td>FECHA</td>
-                </thead>
-                <tbody id="grid">
-                    <?php echo obtenerProductos($conexion); ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <div style="position:relative;"><canvas id="myChart" width="300" height="200"></canvas>
+        <div style="position: absolute; top: 0; left: 0; right: 0; margin: 0 auto;"><canvas id="myChart2" style='opacity: 0;' width="300" height="200"></canvas></div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [<?php echo obtenerNombre($conexion); ?>],
+                datasets: [{
+                    label: 'Precios',
+                    data: [<?php echo obtenerPrecio($conexion); ?>],
+                    backgroundColor: [<?php echo GenerarColumnasColor($conexion); ?>],
+                    borderColor: [<?php echo GenerarColumnasColor($conexion); ?>],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <br><br><br>
+    <script>
+        var ctx = document.getElementById('myChart2');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [<?php echo obtenerNombre($conexion); ?>],
+                datasets: [{
+                    label: "My First Dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBorderBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [<?php echo obtenerPrecio($conexion); ?>],
+                }]
+            }
+        });
+    </script>
+    <br><br><br>
+
+
+
+    <div style="position:relative;"><canvas id="myChart3" width="400" height="200"></canvas>
+        <div style="position: absolute; top: 0; left: 0; right: 0; margin: 0 auto;"><canvas id="myChart4" style='opacity: 0;' width="400" height="200"></canvas></div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [<?php echo obtenerNombre($conexion); ?>],
+                datasets: [{
+                    label: 'Precios',
+                    data: [<?php echo obtenerCantidad($conexion); ?>],
+                    backgroundColor: [<?php echo GenerarColumnasColor($conexion); ?>],
+                    borderColor: [<?php echo GenerarColumnasColor($conexion); ?>],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <br><br><br>
+    <script>
+        var ctx = document.getElementById('myChart4');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [<?php echo obtenerNombre($conexion); ?>],
+                datasets: [{
+                    label: "My First Dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBorderBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [<?php echo obtenerCantidad($conexion); ?>],
+                }]
+            }
+        });
+    </script>
 </body>
 
 </html>
