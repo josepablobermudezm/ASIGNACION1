@@ -39,6 +39,10 @@
                                 <div class='label_icon'>Formulario</div>
                             </div>
 
+                            <div id='comic' class='icons' style="background:url('app_core/rsc/apps/comic/icon.png') no-repeat;">
+                                <div class='label_icon'>Crear Comic</div>
+                            </div>
+
                             <label>
                                 <div id='bck' class='icons2' style="background:url('background.png');">
                                     <div class='label_icon'>Background</div>
