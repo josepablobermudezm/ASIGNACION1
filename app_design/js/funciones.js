@@ -178,13 +178,22 @@ function elementDrag(e) {
     var top = (elmnt.offsetTop - pos2);
     var leftX = (elmnt.offsetLeft - pos1);
 
-    if(leftX >=0 && top >=0 && top <=98 && leftX<=252){
+    /*console.log("TOP "+ top +" LEFT "+ leftX);
+    elmnt.style.top = top + "px";
+    elmnt.style.left = leftX  + "px";*/
+
+    if(leftX >=0 && top >=0 && top <=133 && leftX<=314){
         // set the element's new position:
         elmnt.style.top = top + "px";
         elmnt.style.left = leftX  + "px";
     }else{
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }  
 
-    }
 }
 
 function closeDragElement() {
