@@ -46,16 +46,12 @@ if (isset($_POST['btn_edit'])) {
                                 <div class='label_icon'>Media</div>
                             </div>
 
-                            <div id='formulario' class='icons' style="background:url('app_core/rsc/apps/formulario/icon.png') no-repeat;">
-                                <div class='label_icon'>Formulario</div>
-                            </div>
-
                             <div id='memory' class='icons' style="background:url('app_core/rsc/apps/memory/icon.png') no-repeat;">
                                 <div class='label_icon'>Memory Game</div>
                             </div>
 
                             <div id='formulario2' class='icons' style="background:url('app_core/rsc/apps/formulario2/icon.png') no-repeat;">
-                                <div class='label_icon'>Formulario2</div>
+                                <div class='label_icon'>Formulario</div>
                             </div>
 
                             <div id='comic' class='icons' style="background:url('app_core/rsc/apps/comic/icon.png') no-repeat;">
