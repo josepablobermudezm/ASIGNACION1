@@ -15,24 +15,8 @@
                                 <div class='label_icon'>Graficos</div>
                             </div>
 
-                            <div id='bbgame' class='icons' style="background:url('app_core/rsc/apps/bbgame/icon.png') no-repeat;">
-                                <div class='label_icon'>BB Game</div>
-                            </div>
-
-                            <div id='calendar' class='icons' style="background:url('app_core/rsc/apps/calendar/icon.png') no-repeat;">
-                                <div class='label_icon'>Calendar</div>
-                            </div>
-
                             <div id='messenger' class='icons' style="background:url('app_core/rsc/apps/messenger/icon.png') no-repeat;">
                                 <div class='label_icon'>Messenger</div>
-                            </div>
-
-                            <div id='media' class='icons' style="background:url('app_core/rsc/apps/media/icon.png') no-repeat;">
-                                <div class='label_icon'>Media</div>
-                            </div>
-
-                            <div id='memory' class='icons' style="background:url('app_core/rsc/apps/memory/icon.png') no-repeat;">
-                                <div class='label_icon'>Memory Game</div>
                             </div>
 
                             <div id='formulario2' class='icons' style="background:url('app_core/rsc/apps/formulario2/icon.png') no-repeat;">
