@@ -1,19 +1,4 @@
 <?php
-require_once(__LIB_PATH . "html.php");
-$html = new HTML();
-$twitter = new CTR_twitter();
-
-if (isset($_POST['btn_save'])) {
-    $twitter->btn_save_click();
-}
-
-if (isset($_POST['btn_eliminar'])) {
-    $twitter->btn_delete_click($_POST['id']);
-}
-
-if (isset($_POST['btn_edit'])) {
-    $twitter->btn_edit_click($_POST['idE']);
-}
 /*para eliminar y editar envio por parametros los id en post*/
 ?>
 
@@ -26,8 +11,8 @@ if (isset($_POST['btn_edit'])) {
                     <input type="date" id="start">
                     <div id='panel'>
                         <div id='panel_icons'>
-                            <div id='example' class='icons' style="background:url('app_core/rsc/apps/example/icon.png');">
-                                <div class='label_icon'>Example APP</div>
+                            <div id='graficos' class='icons' style="background:url('app_core/rsc/apps/graficos/icon.png');">
+                                <div class='label_icon'>Graficos</div>
                             </div>
 
                             <div id='bbgame' class='icons' style="background:url('app_core/rsc/apps/bbgame/icon.png') no-repeat;">

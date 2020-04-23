@@ -2,7 +2,6 @@
 /*          _\|/_
             (0 0)
 --------o00o-{_}-o00o-----------------------
-
 ARCHIVO DE CONFIGURACIÓN GLOBAL.
 --------------------------------------------
 /\/\
@@ -23,8 +22,6 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
   define('__SITE_PATH', $mysite);
 
-  define('__CON_PATH', "app_core/bd/");
-  define('__MDL_PATH', "app_core/models/");
   define('__CTR_PATH', "app_core/controllers/");
   define('__VWS_PATH', __ROOT__ . "/" . $myproject . "/app_core/views/");
   define('__VWS_HOST_PATH', $mysite . "/app_core/views/");
