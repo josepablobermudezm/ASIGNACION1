@@ -187,11 +187,11 @@ function elementDrag(e) {
         elmnt.style.top = top + "px";
         elmnt.style.left = leftX  + "px";
     }else{
-      pos3 = e.clientX;
+     /* pos3 = e.clientX;
       pos4 = e.clientY;
       document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
+    document.onmousemove = elementDrag;*/
     }  
 
 }
