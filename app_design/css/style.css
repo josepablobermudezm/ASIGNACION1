@@ -1,15 +1,15 @@
 ﻿/*Quitamos los bordes invisibles a nuestra página*/
 html, body { 
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 #mydivheader {
-  padding: 10px;
-  cursor: move;
-  z-index: 10;
-  background-color: #2196F3;
-  color: #fff;
+	padding: 10px;
+	cursor: move;
+	z-index: 10;
+	background-color: #2196F3;
+	color: #fff;
 }
 
 /*Centramos nuestro contenido total*/
@@ -21,7 +21,7 @@ html, body {
 }
 
 body{
-    overflow: hidden; /*ocultamos el scroll horizontal del navegador*/
+	overflow: hidden; /*ocultamos el scroll horizontal del navegador*/
 }
 
 #main{
@@ -48,8 +48,8 @@ body{
 	z-index: 0;
 	margin-top: 20px;
 	background: url('../../app_core/rsc/pics/3.jpg') no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
+	background-position: center;
+	background-size: 100% 100%;
 }
 #f_titulo{
 	font-family: Arial, Helvetica, sans-serif;
@@ -74,13 +74,13 @@ body{
 }
 
 @keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
+	from { opacity: 1; visibility: visible; }
+	to   { opacity: 0; visibility: hidden; }
 }
 
 @keyframes fadein {
-    from { opacity: 0; visibility: hidden; }
-    to   { opacity: 1; visibility: visible; }
+	from { opacity: 0; visibility: hidden; }
+	to   { opacity: 1; visibility: visible; }
 }
 .imagenes{
 	position: relative;
@@ -208,6 +208,8 @@ body{
 	background: #000;
 	opacity: 0.8;
 	border-radius: 8px;
+	left:17%;
+	top: 15%; 
 	overflow: none;
 
 }
