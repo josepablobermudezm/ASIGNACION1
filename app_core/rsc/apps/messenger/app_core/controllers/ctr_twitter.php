@@ -1,78 +1,88 @@
 <?php
-  
+
    require_once(__MDL_PATH . "mdl_twitter.php");  //requerimos del modelo 
    require_once(__LIB_PATH . "message.php"); 
-     
+
    class CTR_twitter {
    	
    	private $postdata;
-   	var $mssg;
-      
+    public $arrayRespuestas;
+
+    var $mssg;
+    var $num_fila=0;
        public function __construct() //CONSTRUCTOR
-	   {
+       {
          $this->postdata=new MDL_twitter();
          $this->mssg = new Message();
-	   }
-	   
-	   public function obtener_tweets()
-	   {
-			return $this->postdata->get_tweets();
-	   } 
+         $this->arrayRespuestas = array();
+       }
 
-     function obtener_tweets_filtro()
-     {
-      $postinfo=array();
-      $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))); 
+       public function obtener_tweets()
+       {
+         return $this->postdata->get_tweets();
+       } 
 
-      return $this->postdata->buscar_tweets($postinfo);
-     }    
-	    
+       function getRespuestas(){
+         return $this->arrayRespuestas;
+       }
+
+       function filtrarRespuestas($id){
+        return $this->postdata->filter_posts($id);
+      }
+
+      function obtener_tweets_filtro()
+      {
+        $postinfo=array();
+        $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))); 
+
+        return $this->postdata->buscar_tweets($postinfo);
+      }    
+
      	//Si se presiona el botón Publicar 
-	   function btn_save_click() 
-	   {    
-          $postinfo=array();
+      function btn_save_click() 
+      {    
+        $postinfo=array();
           //Removemos espacios y etiquetas html, además sustituimos comillas simples 
           //por dobles para prevenir SQL INJECTION
-          $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))) . str_replace("'", "\"", $this->uploadFile()); 
+        $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))) . str_replace("'", "\"", $this->uploadFile()); 
 
-          $this->postdata->insertar_post($postinfo);
-          $this->mssg->show_message("","success","success_insert");
+        $this->postdata->insertar_post($postinfo);
+        $this->mssg->show_message("","success","success_insert");
 
-    }
+      }
 
-    //Si se presiona el botón Publicar 
-    function btn_delete_click($id) 
-    {    
-        $tweets = $this->postdata->filter_posts($id);
-        $this->postdata->eliminar_post($id);
+      function btn_delete_click($id) 
+      {    
+        $tweets = $this->postdata->filter_eliminar($id);
+        $copy = $tweets;
+
         if(sizeof($tweets) > 0){
           foreach ($tweets as $t){
-            btn_delete_click($t[0]);
-            $this->postdata->eliminar_post($t[0]);
+            $this->btn_delete_click($t[0]);
           }
-         
         }
-    }
+        $this->postdata->eliminar_post($id);
 
-    //Si se presiona el botón Publicar 
-     function btn_edit_click() 
-     {  
+      }
+
+      function btn_edit_click() 
+      {  
         $postinfo=array();
         $postinfo[0]=$_POST['id_post']; 
         $postinfo[1]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))) . str_replace("'", "\"", $this->uploadFile()); 
         $this->postdata->editar_post($postinfo);
         $this->mssg->show_message("","success","success_uodate");
 
-    }
+      }
 
-    function cargar_view() 
-    {    
+      function cargar_view() 
+      {    
         //Incluimos literalmente la vista correspondiente
-          require_once(__VWS_PATH . "twitter.php");
-    }
+        require_once(__VWS_PATH . "twitter.php");
+      }
 
-    function uploadFile() 
-    {    
+      function uploadFile() 
+      {    
         $img =""; 
 
         if(isset($_FILES['txt_file'])){
@@ -84,15 +94,19 @@
         }
 
         return $img;
+      }
+      function Save_Resp(){
+
+        $postinfo=array();
+        $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))) . str_replace("'", "\"", $this->uploadFile()); 
+        $this->postdata->insertar_Resp($postinfo, $_POST['id_respuesta'] ,$_POST['id_original']);
+
+      }
+
+      function Validar_Resp($id){
+        return $this->postdata->filter_eliminar($id);
+      }
+
     }
-    function Save_Resp(){
-
-      $postinfo=array();
-      $postinfo[0]=strip_tags(trim(str_replace("'", "\"", $_POST['txt_post']))) . str_replace("'", "\"", $this->uploadFile()); 
-      $this->postdata->insertar_Resp($postinfo, $_POST['id_post']);
-
-    }
-
-  }
-?>
+    ?>
 
