@@ -248,9 +248,9 @@ function openApp() {
     }else if(this.id == "messenger"){
         document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.php";
     }
-    /*else{
+    else{
         document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
-    }*/
+    }
 }
 
 function closeApp() {
