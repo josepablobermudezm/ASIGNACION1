@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2020 a las 07:05:25
+-- Tiempo de generación: 24-04-2020 a las 04:23:10
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,15 +32,18 @@ CREATE TABLE `tbl_posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `post` varchar(1024) NOT NULL,
   `date` varchar(20) NOT NULL,
-  `id_respuesta` bigint(20) UNSIGNED NOT NULL
+  `id_respuesta` bigint(20) UNSIGNED NOT NULL,
+  `id_tweet_original` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tbl_posts`
 --
 
-INSERT INTO `tbl_posts` (`id`, `post`, `date`, `id_respuesta`) VALUES
-(244, 'Hola', '2020-04-22 18:36:18', 0);
+INSERT INTO `tbl_posts` (`id`, `post`, `date`, `id_respuesta`, `id_tweet_original`) VALUES
+(347, 'ASDF', '2020-04-23 20:08:46', 0, 0),
+(348, 'XDDD', '2020-04-23 20:08:52', 347, 347),
+(350, 'QUIERO', '2020-04-23 20:12:07', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -80,7 +83,7 @@ ALTER TABLE `tweets`
 -- AUTO_INCREMENT de la tabla `tbl_posts`
 --
 ALTER TABLE `tbl_posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=353;
 
 --
 -- AUTO_INCREMENT de la tabla `tweets`
