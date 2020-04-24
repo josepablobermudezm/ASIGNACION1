@@ -2,6 +2,7 @@
 /*          _\|/_
             (0 0)
 --------o00o-{_}-o00o-----------------------
+
 ARCHIVO DE CONFIGURACIÓN GLOBAL.
 --------------------------------------------
 /\/\
@@ -13,22 +14,24 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   // ------ Variables que definen el nombre actual del hosting -------
 
   $myhost="http://localhost";
-  $myproject="ASIGNACION1";
-  $mysite=$myhost . "/" . $myproject;
-
+  $myproject="messenger";
+  $mysite=$myhost . "/ASIGNACION1/app_core/rsc/apps/" . $myproject;
   date_default_timezone_set('America/Costa_Rica');
 
    // ------ Variables estáticas que definen las rutas absolutas del proyecto -------
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
   define('__SITE_PATH', $mysite);
 
+  define('__CON_PATH', "app_core/bd/");
+  define('__MDL_PATH', "app_core/models/");
   define('__CTR_PATH', "app_core/controllers/");
-  define('__VWS_PATH', __ROOT__ . "/" . $myproject . "/app_core/views/");
+  define('__VWS_PATH', __ROOT__ . "/ASIGNACION1/app_core/rsc/apps/" . $myproject . "/app_core/views/");
   define('__VWS_HOST_PATH', $mysite . "/app_core/views/");
   define('__CTR_HOST_PATH', $mysite . "/app_core/controllers/");
    define('__LIB_PATH', "app_core/resources/libs/");
 
   define('__RSC_PATH', __ROOT__ . "/app_core/resources/");
+  define('__RSC_FILES_PATH', "app_core/resources/files/");
   define('__RSC_HOST_PATH', $mysite . "/app_core/resources/");
   define('__RSC_PHO_HOST_PATH', $mysite . "/app_core/resources/photos/");
   define('__RSC_FLE_HOST_PATH', $mysite . "/app_core/resources/files/");

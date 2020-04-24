@@ -241,13 +241,16 @@ function reloj() {
 
 function openApp() {
     document.getElementById("main_app").style.animation = "fadein 1s both";
-    if(this.id == "formulario2"){
+    if(this.id == "formulario2" || this.id == "graficos"){
         document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/formulario.php";
     }else if(this.id == "comic"){
         document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/comic.php";
-    }else{
-        document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
+    }else if(this.id == "messenger"){
+        document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.php";
     }
+    /*else{
+        document.getElementById("window_app").src = "app_core/rsc/apps/" + this.id + "/index.html";
+    }*/
 }
 
 function closeApp() {

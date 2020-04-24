@@ -18,10 +18,10 @@
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content="Social Network, HTML5, PHP, MySQL, jquery" />
     <meta name="language" content="es" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <link rel="shortcut icon" href="favicon.ico"/>
 
       <?php
+     	  echo $html->html_js_header("https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js");
           echo $html->html_js_header(__JS_PATH . "funciones.js"); 
           echo $html->html_css_header(__CSS_PATH . "style.css","screen"); 
       ?>
@@ -43,3 +43,5 @@
     
   </body>
 </html>
+
+
