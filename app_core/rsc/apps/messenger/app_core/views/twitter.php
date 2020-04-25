@@ -49,12 +49,15 @@ $html = new HTML();
   //Almacenará ya sea todos los tweets o los filtrados por la búsqueda
   //dependiendo de si presionamos el botón buscar
      $tweets = ""; 
-     $cont=2; 
+     $cont=4; 
      $resp = "";
+     $band = 0;
      if(isset($_POST['btn_search'])){ 
       $tweets = $twitter->obtener_tweets_filtro();
+      $band = 1;
     }else{ 
       $tweets = $twitter->obtener_tweets();
+      $band = 0;
     }
 
     ?>
@@ -75,7 +78,7 @@ $html = new HTML();
           <button id='btn_Resp'   type='button' name='btn_Resp' onclick='GuardarRespuesta(<?php echo $t[0] ?>,<?php echo $t[0] ?>)'>Responder</button>
         </div>
         <?php 
-        if(sizeof($resp) > 0){
+        if(sizeof($resp) > 0 && $band == 0){
           foreach ($resp as $r){ ?>
             <div class='post_block' style= 'margin-left:<?php echo $cont.'%' ?>; width: auto;'>
               <span class='post_text' id='post_<?php echo $r[0]; ?>'>
@@ -91,10 +94,10 @@ $html = new HTML();
               <button id='btn_Resp'   type='button' name='btn_Resp' onclick='GuardarRespuesta(<?php echo $r[0] ?>, <?php echo $t[0] ?>)'>Responder</button>
             </div>
             <?php 
-            $cont += 2;
+            $cont += 4;
           }
         }
-        $cont=2;
+        $cont=4;
         /*$twitter->getRespuestas()="";
         $twitter->getRespuestas()=array();*/
         ?> 

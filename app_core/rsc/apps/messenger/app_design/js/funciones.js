@@ -1,5 +1,9 @@
 function buscarAjax(){
-    var formdata = new FormData();
+  var formdata = new FormData();
+    if(!document.getElementById('txt_post').value){
+      location.reload();
+    }
+    
     formdata.append('btn_search', true);
     formdata.append('txt_post', document.getElementById('txt_post').value);
 
