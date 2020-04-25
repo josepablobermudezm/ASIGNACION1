@@ -5,20 +5,36 @@ function readFile(input) {
 
     reader.onload = function (e) {
       var canvas = document.getElementById("lienzo");
-      var img = new Image();
+      console.log(canvas.clientHeight);
+      console.log(canvas.clientWidth);
+      var img = new Image(canvas.clientWidth,canvas.clientHeight);
       img.id = 'file-preview';
       //e.target.result contents the base64 data from the image uploaded
       img.src = e.target.result;
       //console.log(e.target.result);         
-      var canvas = document.getElementById("lienzo");
       var ctx = canvas.getContext("2d");
       img.onload = function(){
-        ctx.drawImage(img, 0, 0);
+        var val = scaleToFit(img);
+        ctx.drawImage(img, 0, 0,val.x,val.y);
       }         
     }
 
     reader.readAsDataURL(input.files[0]);
   }
+}
+
+function scaleToFit(img){
+    var canvas = document.getElementById("lienzo");
+    // get the scale
+    var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+    // get the top left position of the image
+    var x = (canvas.width / 2) - (img.width / 2) * scale;
+    var y = (canvas.height / 2) - (img.height / 2) * scale;
+
+    return {
+      x: img.width * scale,
+      y: img.height * scale
+    };
 }
 
 function download(){

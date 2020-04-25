@@ -4,6 +4,9 @@ html, body {
     font-family: Segoe UI, Verdana;
 }
 
+#file-preview{
+     
+}
 
 #title {
     margin-left: 35%;
@@ -228,7 +231,7 @@ tbody tr:nth-child(odd) {background: #FFF}
 
 #left{
     height: auto;
-    width: 50%;
+    width: 80%;
 }
 
 #right{
