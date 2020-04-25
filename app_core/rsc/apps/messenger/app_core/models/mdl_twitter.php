@@ -36,9 +36,22 @@
 		public function buscar_tweets($datospost = array()){ 
 
 			$this->conexion->consulta("SELECT tbl_posts.id, tbl_posts.post,tbl_posts.date, tbl_posts.id_respuesta, tbl_posts.id_tweet_original
-									   FROM tbl_posts WHERE tbl_posts.post LIKE '".$datospost[0]."%' ORDER BY tbl_posts.id DESC");
+									   FROM tbl_posts WHERE tbl_posts.post LIKE '%".$datospost[0]."%' ORDER BY tbl_posts.id DESC");
 
-			
+			$posts=array(); //matriz
+			$num_fila=0;
+
+			//obtenemos cada registro y cada campo
+			while ($fila = $this->conexion->extraer_registro()) {
+				$posts[$num_fila][0] = $fila[0]; //id
+				$posts[$num_fila][1] = $fila[1]; //detalle del post
+				$posts[$num_fila][2] = $fila[2]; //fecha
+				$posts[$num_fila][3] = $fila[3]; // id respuesta
+				$posts[$num_fila][4] = $fila[4]; // id origen
+				$num_fila++;
+			}
+
+			return $posts;
 		}
 
 		//Función para insertar registros
