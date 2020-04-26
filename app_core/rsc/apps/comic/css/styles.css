@@ -218,6 +218,9 @@ tbody tr:nth-child(odd) {background: #FFF}
     margin: 5px;
 }
 
+#t_com{
+    margin-left: 5px;
+}
 #right{
     display: inline-block;
     justify-content: center;

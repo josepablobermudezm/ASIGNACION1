@@ -55,7 +55,7 @@ $message = "";
                 <br>
                 <input type="text" id="txt_Com_Y" class="datos" placeholder="Posicion Y" value="100" >
                 <br>
-                <label>Tamaño</label>
+                <label id="t_com">Tamaño</label>
                 <select id="cmb_Tam" name="cmb_Tam">
                     <option value="8">8</option>
                     <option value="9">9</option>
