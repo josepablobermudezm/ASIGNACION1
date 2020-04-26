@@ -1,4 +1,9 @@
+var z = 1;
+var x = 0;
+var y = 0;
+
 window.addEventListener('load', miFuncionLoad, false);
+
 function readFile(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -28,29 +33,53 @@ function readFile(input) {
   }
 }
 
-    function drawImage(image, w, h) {
-        ctx.drawImage(image, foto.x, foto.y, w, h);
+var canvas = document.getElementById("lienzo");
+var X,Y;
 
-        ctx.fillStyle = 'white';
 
-        ctx.beginPath();
-        ctx.arc(foto.x, foto.y, 5, 0, Math.PI * 2, 1);
-        ctx.fill();
 
-        ctx.beginPath();
-        ctx.arc(w + foto.x, h / 2 + foto.y, 5, 0, Math.PI * 2, 1);
-        ctx.fill();
+function inicializarCanvas(){  
+  var ctx = canvas.getContext("2d");
+  var s = getComputedStyle(canvas);
+  var w = s.width;
+  var h = s.height;
+  canvas.width=w.split("px")[0];
+  canvas.height=h.split("px")[0];
+  X=canvas.width/2;
+  Y=canvas.height/2;
+  dibujar(ctx);
+}
 
-        ctx.beginPath();
-        ctx.arc(w / 2 + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-        ctx.fill();
+function dibujar(ctx){
+  ctx.fillStyle = "#108EFF";
+  ctx.arc(X,Y,X,0,2*Math.PI);
+  ctx.fill();
+}  
 
-        ctx.beginPath();
-        ctx.arc(w + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-        ctx.fill();
-    }
 
-  
+function drawImage(image, w, h) {
+  ctx.drawImage(image, foto.x, foto.y, w, h);
+
+  ctx.fillStyle = 'white';
+
+  ctx.beginPath();
+  ctx.arc(foto.x, foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w + foto.x, h / 2 + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w / 2 + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+}
+
+
 
 function scaleToFit(img){
   var canvas = document.getElementById("lienzo");
@@ -105,100 +134,137 @@ function scaleToFit(img){
     var isUp = null;
     image.src = 'beads.jpg';
 
-      window.onmousedown = function(evt) {
-        var ax = evt.clientX - cv.offsetLeft;
-        var ay = evt.clientY - cv.offsetTop;
+    window.onmousedown = function(evt) {
+      var ax = evt.clientX - cv.offsetLeft;
+      var ay = evt.clientY - cv.offsetTop;
 
-        console.log(ax, ay);
+      console.log(ax, ay);
 
-        if (ax >= foto.w - 5 + foto.x
-            && ax <= foto.w + foto.x + 5
-            && ay >= foto.h / 2 + foto.y - 5
-            && ay <= foto.h / 2 + foto.y + 5
+      if (ax >= foto.w - 5 + foto.x
+        && ax <= foto.w + foto.x + 5
+        && ay >= foto.h / 2 + foto.y - 5
+        && ay <= foto.h / 2 + foto.y + 5
         ) {
-            isUp = 'right';
-        }
-
-        else if (ax >= foto.w / 2 + foto.x - 5
-            && ax <= foto.w / 2 + foto.x + 5
-            && ay >= foto.h + foto.y - 5
-            && ay <= foto.h + foto.y + 5
-        ) {
-            isUp = 'bottom';
-        }
-
-        else if (ax >= foto.w + foto.x - 5
-            && ax <= foto.w + foto.x + 5
-            && ay >= foto.h + foto.y - 5
-            && ay <= foto.h + foto.y + 5
-        ) {
-            isUp = 'bottom-right';
-        }
-
-        else if (ax >= foto.x - 5 && ax <= foto.x + 5
-            && ay >= foto.y - 5 && ay <= foto.y + 5
-        ) {
-            isUp = 'top-left';
-        }
+        isUp = 'right';
     }
 
-    window.onmousemove = function(evt) {
-        var ax = evt.clientX - cv.offsetLeft;
-        var ay = evt.clientY - cv.offsetTop;
-
-        if (isUp === 'right') {
-            foto.w = ax - foto.x;
-            ctx.clearRect(0, 0, 900, 600);
-            drawImage(image, foto.w, foto.h);
-        }
-
-        else if (isUp === 'bottom') {
-            foto.h = ay - foto.y;
-            ctx.clearRect(0, 0, 900, 600);
-            drawImage(image, foto.w, foto.h);
-        }
-
-        else if (isUp === 'bottom-right') {
-            foto.w = ax - foto.x;
-            foto.h = ay - foto.y;
-            ctx.clearRect(0, 0, 900, 600);
-            drawImage(image, foto.w, foto.h);
-        }
-
-        else if (isUp === 'top-left') {
-            var dx = foto.x - ax;
-            var dy = foto.y - ay;
-            foto.x = ax;
-            foto.y = ay;
-            foto.w += dx;
-            foto.h += dy;
-            ctx.clearRect(0, 0, 900, 600);
-            drawImage(image, foto.w, foto.h);
-        }
-    }
-
-    window.onmouseup = function(evt) {
-        isUp = null;
-    }
-
-
-
-    btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
+    else if (ax >= foto.w / 2 + foto.x - 5
+      && ax <= foto.w / 2 + foto.x + 5
+      && ay >= foto.h + foto.y - 5
+      && ay <= foto.h + foto.y + 5
+      ) {
+      isUp = 'bottom';
   }
 
-  function insertarGlobo(){
+  else if (ax >= foto.w + foto.x - 5
+    && ax <= foto.w + foto.x + 5
+    && ay >= foto.h + foto.y - 5
+    && ay <= foto.h + foto.y + 5
+    ) {
+    isUp = 'bottom-right';
+}
 
-    var canvas = document.getElementById("lienzo");
-    var ctx = canvas.getContext('2d');
-    ctx.beginPath();
-    ctx.moveTo(75,25);
-    ctx.quadraticCurveTo(15,15,15,52.5);
-    ctx.quadraticCurveTo(15,90,40,90);
-    ctx.quadraticCurveTo(40,110,20,115);
-    ctx.quadraticCurveTo(50,110,55,90);
-    ctx.quadraticCurveTo(115,90,115,52.5);
-    ctx.quadraticCurveTo(115,15,65,15);
-    ctx.stroke();
+else if (ax >= foto.x - 5 && ax <= foto.x + 5
+  && ay >= foto.y - 5 && ay <= foto.y + 5
+  ) {
+  isUp = 'top-left';
+}
+}
+
+window.onmousemove = function(evt) {
+  var ax = evt.clientX - cv.offsetLeft;
+  var ay = evt.clientY - cv.offsetTop;
+
+  if (isUp === 'right') {
+    foto.w = ax - foto.x;
+    ctx.clearRect(0, 0, 900, 600);
+    drawImage(image, foto.w, foto.h);
+  }
+
+  else if (isUp === 'bottom') {
+    foto.h = ay - foto.y;
+    ctx.clearRect(0, 0, 900, 600);
+    drawImage(image, foto.w, foto.h);
+  }
+
+  else if (isUp === 'bottom-right') {
+    foto.w = ax - foto.x;
+    foto.h = ay - foto.y;
+    ctx.clearRect(0, 0, 900, 600);
+    drawImage(image, foto.w, foto.h);
+  }
+
+  else if (isUp === 'top-left') {
+    var dx = foto.x - ax;
+    var dy = foto.y - ay;
+    foto.x = ax;
+    foto.y = ay;
+    foto.w += dx;
+    foto.h += dy;
+    ctx.clearRect(0, 0, 900, 600);
+    drawImage(image, foto.w, foto.h);
+  }
+}
+
+window.onmouseup = function(evt) {
+  isUp = null;
+}
+
+
+
+btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
+}
+
+function insertarGlobo(){
+
+  var canvas = document.getElementById("lienzo");
+  var ctx = canvas.getContext('2d');
+  ctx.beginPath();
+  if(z==1){
+    x=0;
+    y=0;
+  }
+  if(z==2){
+    x -= 60;
+    y -= 60;
+  }else if(z == 3){
+    x -= 75;
+    y -= 75;
+  }
+
+  ctx.moveTo((65+x)*z,(5+y)*z);
+  ctx.quadraticCurveTo((5+x)*z,(0+y)*z,(0+x)*z,(42.5+y)*z);
+  ctx.quadraticCurveTo((5+x)*z,(75+y)*z,(25+x)*z,(80+y)*z);
+  ctx.quadraticCurveTo((30+x)*z,(95+y)*z,(5+x)*z,(105+y)*z);
+  ctx.quadraticCurveTo((40+x)*z,(95+y)*z,(40+x)*z,(80+y)*z);
+  ctx.quadraticCurveTo((105+x)*z,(75+y)*z,(100+x)*z,(42.5+y)*z);
+  ctx.quadraticCurveTo((105+x)*z,(0+y)*z,(50+x)*z,(5+y)*z);
+
+
+  ctx.fillStyle = "white";
+  ctx.fill();
+  ctx.strokeStyle = "black";
+  ctx.stroke();
+
+    //function.addEventListener("click" );
+  }
+
+  function checkBox(cb){
+    for (n = 0; n < 3; n++) {
+      if (eval("document.form.contact[" + n + "].checked") == true) {
+        document.form.contact[n].checked = false;
+        if (n == cb) {
+          document.form.contact[n].checked = true;
+        }
+      }
+    }
+    if (document.form.contact[np].id == document.getElementById("1").id) {
+
+    } else if(document.form.contact[np].id == document.getElementById("2").id){
+
+    }else{
+
+    }
   }
 
   function getMousePos(canvas, evt) {

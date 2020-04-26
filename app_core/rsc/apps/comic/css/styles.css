@@ -189,6 +189,7 @@ tbody tr:nth-child(odd) {background: #FFF}
 
 
 #principal{
+    position: absolute;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -199,13 +200,19 @@ tbody tr:nth-child(odd) {background: #FFF}
 
 #lienzo{
     background-color: white;
-    height: 100%;
+    position: relative;
     width: 100%;
 }
 
 #left{
-    height: auto;
-    width: 80%;
+    position: relative;
+    height: 100%;
+
+    width: 85%;
+}
+
+.datos{
+    background-color: #777; 
 }
 
 #right{
@@ -213,9 +220,9 @@ tbody tr:nth-child(odd) {background: #FFF}
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 45%;
+    height: 100%;
     background-color: rgb(72, 75, 72);
-    padding: 5px;
+    /*padding: 5px;*/
 }
 
 #txt_comentario{

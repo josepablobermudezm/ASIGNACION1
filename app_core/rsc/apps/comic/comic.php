@@ -16,17 +16,16 @@ $message = "";
     <script src="js/alertify.min.js"></script>
     <script type="text/javascript" src="js/funciones_comic.js"></script>
 </head>
-
-<body>
-    <?php echo ($message != "") ? "<script> alertify.set('notifier','position', 'top-center'); alertify.success('$message');</script>" : ""; ?>
-    <!--div class="bubble" style=""></div-->
-    <div id="principal">
-        <div id="left">
-            <label id="titulo">ÁREA DE TRABAJO</label>
-            <canvas id="lienzo" width="100%" height="100%" onmousemove="">
-            </canvas>
-        </div>
-        <div id="right">
+<?php echo ($message != "") ? "<script> alertify.set('notifier','position', 'top-center'); alertify.success('$message');</script>" : ""; ?>
+<!--div class="bubble" style=""></div-->
+<div id="principal">
+    <div id="left">
+        <label id="titulo">ÁREA DE TRABAJO</label>
+        <canvas id="lienzo" width="600" height="600">
+        </canvas>
+    </div>
+    <div id="right"> 
+        <div style="height: 50%; width: 100%;">
             <input type="text" id="txt_comentario" name="txt_comentario" placeholder="Digite el comentario">
             <a id="download">
                 <input type="file" name="txt_foto" class="campo_texto" id="txt_foto" accept="image/*">
@@ -34,7 +33,21 @@ $message = "";
             <input  type="text" name="" id="txt_nombre" placeholder="Nombre de Imagen">
             <button id="btn_descarga">Descargar Imagen</button>
             <button id="btn_agregar">Agregar Globo</button>
-        </div>  
+        </div>
+        <div style="width: 100%; height: 50%; background-color: gray;"> 
+            <input type="text" name="" class="datos" placeholder="Posicion X">
+            <input type="text" name="" class="datos" placeholder="Posicion Y">
+            <label>Tamaño</label> 
+            <br>
+            <form name="form">
+                <input type="checkbox" id="1" name="contact" onClick="javascript:checkBox(0)" value="1" checked>1<br>
+                <input type="checkbox" id="2" name="contact" onClick="javascript:checkBox(1)" value="1">2
+                <br>
+                <input type="checkbox" id="3" name="contact" onClick="javascript:checkBox(2)" value="1">3    
+            </form>
+            <button>Terminado</button>
+        </div>
     </div>
-    <!--div id="triangulo"></div-->
-</body>
+
+
+</div>
