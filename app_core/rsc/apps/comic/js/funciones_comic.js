@@ -192,12 +192,12 @@ function scaleToFit(img){
     var ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(75,25);
-    ctx.quadraticCurveTo(25,25,25,62.5);
-    ctx.quadraticCurveTo(25,100,50,100);
-    ctx.quadraticCurveTo(50,120,30,125);
-    ctx.quadraticCurveTo(60,120,65,100);
-    ctx.quadraticCurveTo(125,100,125,62.5);
-    ctx.quadraticCurveTo(125,25,75,25);
+    ctx.quadraticCurveTo(15,15,15,52.5);
+    ctx.quadraticCurveTo(15,90,40,90);
+    ctx.quadraticCurveTo(40,110,20,115);
+    ctx.quadraticCurveTo(50,110,55,90);
+    ctx.quadraticCurveTo(115,90,115,52.5);
+    ctx.quadraticCurveTo(115,15,65,15);
     ctx.stroke();
   }
 
