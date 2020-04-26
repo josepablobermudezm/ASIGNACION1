@@ -35,8 +35,8 @@ $message = "";
             <button id="btn_agregar">Agregar Globo</button>
         </div>
         <div style="width: 100%; height: 50%; background-color: gray;"> 
-            <input type="text" id="txt_pos_x" name="" onkeyup='ModificarX()' class="datos" placeholder="Posicion X">
-            <input type="text" id="txt_pos_y" class="datos" onkeyup='ModificarY()' placeholder="Posicion Y">
+            <input type="text" id="txt_pos_x" name="" class="datos" placeholder="Posicion X">
+            <input type="text" id="txt_pos_y" class="datos" placeholder="Posicion Y">
             <label>Tamaño</label> 
             <br>
             <form name="form">
