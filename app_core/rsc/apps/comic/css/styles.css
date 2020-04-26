@@ -3,6 +3,44 @@ html, body {
     padding: 0;
     font-family: Segoe UI, Verdana;
 }
+#titulo{
+    color: white;
+    margin-left: 32%
+}
+text{
+    color: white;
+    font-size: 13px;
+    background-color: #777;
+}
+button{
+    background-color: transparent; /* Green */
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    margin-top: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: rgb(255, 255, 255);
+}
+button:hover {
+    background-color:  #777; 
+    color: antiquewhite; 
+    border: 2px solid #FFF;
+}
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+::-webkit-input-placeholder { color: rgb(243, 243, 243); } 
+
+:-moz-placeholder { /* Firefox 18- */ color: rgb(255, 255, 255); } 
+
+::-moz-placeholder { /* Firefox 19+ */ color: rgb(255, 255, 255); } 
 
 .balloon{
     border-radius: 5px;
@@ -43,8 +81,38 @@ html, body {
 }
 
 
-#file-preview{
+:-ms-input-placeholder { color: rgb(255, 255, 255); }
 
+#txt_foto{
+    color: white;
+    background-color: #777;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    
+}
+#txt_foto:hover{
+    color: #777;
+    background-color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+#txt_comentario{
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    background-color: #777;
+    width: 90%;
+}
+
+
+#txt_nombre{
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    background-color: #777;
+    width: 90%;
 }
 
 #title {
@@ -74,6 +142,7 @@ html, body {
     padding: 2px;
     margin: 0px 20px 10px 0px;
 }
+
 
 #panel_data{
     position: relative;
@@ -200,7 +269,7 @@ tbody tr:nth-child(odd) {background: #FFF}
     padding: 10px;
     width: 220px;
     border-radius: 10px;
-    font­size: 1.4em;
+    font-size: 1.4em;
     color:black;
     background-color: white;
 }
@@ -209,21 +278,13 @@ tbody tr:nth-child(odd) {background: #FFF}
     position: absolute;
     width: 0;
     height: 0;
-    border­bottom: 30px solid #8f0;
-    border­right: 20px solid transparent;
-    border­left: 20px solid transparent;
+    border-bottom: 30px solid #8f0;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
     margin: ­30px 0 0 90px;
     background-color: white;
 }
 
-
-.balloon{
-    border-radius: 5px;
-    background-color: chocolate;
-    color: floralwhite;
-    padding: 10px;
-    width: 120px;
-}
 
 .bubble {
     position: relative;
@@ -288,8 +349,9 @@ tbody tr:nth-child(odd) {background: #FFF}
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 50%;
-    background-color: green;
+    height: 45%;
+    background-color: rgb(72, 75, 72);
+    padding: 5px;
 }
 
 #txt_comentario{
