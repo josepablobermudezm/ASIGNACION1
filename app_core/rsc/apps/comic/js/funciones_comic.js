@@ -106,7 +106,7 @@ function scaleToFit(img){
 
     download();
 
-    txt_comentario.addEventListener("keyup",insertarComentario,true);
+    txt_comentario.addEventListener("keyup",insertarComentario,false);
 
     btnAgregarComentario.addEventListener("click",insertarComentario,false);
 
@@ -166,7 +166,7 @@ function scaleToFit(img){
   }
 
   function insertarComentario(){
-    if(globoAgregado){
+    if(globoAgregado && !click){
       clickCom = true;
       recargarImagen();
       var canvas = document.getElementById("lienzo");
@@ -182,15 +182,13 @@ function scaleToFit(img){
       ctx.font="bold "+ tam + "pt Comic Sans MS";
       ctx.fillStyle = "black";
       ctx.fillText(comentario,posX,posY);
-    } else if(){
-
-    }
+    } 
   }
 
   var auxContext;
 
   function insertarGlobo(){
-    if(auxImage!=null){
+    if(auxImage!=null && !clickCom){
       var div = document.getElementById("Caja_Globo");
       div.style = "display:block;";
       recargarImagen();
