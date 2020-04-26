@@ -96,9 +96,6 @@ if (isset($_POST["btn_eliminar"])) {
             </div>
         </section>
     </div>
-
-
-    
 </body>
 
 </html>

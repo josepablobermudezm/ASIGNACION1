@@ -8,7 +8,7 @@
             <section id='device'>
                 <div id='main_screen'>
                     <div id='topbar'><span id='lbl_time_top' onclick="calendario()"></span></div>
-                    <input type="date" id="start" style="visibility: hidden;">
+                    <input type="date" id="start">
                     <div id='panel'>
                         <div id='panel_icons'>
                             <div id='graficos' class='icons' style="background:url('app_core/rsc/apps/graficos/icon.png');">

@@ -136,7 +136,6 @@ body{
 	position: absolute; 
 	visibility: hidden; 
 	opacity: 0.4;
-	pointer-events: none;
 	border: none;
 }
 
