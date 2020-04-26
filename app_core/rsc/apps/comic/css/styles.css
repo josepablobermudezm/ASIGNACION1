@@ -214,6 +214,8 @@ tbody tr:nth-child(odd) {background: #FFF}
 
 .datos{
     background-color: #777; 
+    width: 40%;
+    margin: 5px;
 }
 
 #right{

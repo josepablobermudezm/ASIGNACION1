@@ -52,7 +52,10 @@ $message = "";
             <div id="Caja_Comentarios" style="display: none;">
                 <input type="text" id="txt_comentario" name="txt_comentario" placeholder="Digite el comentario">
                 <input type="text" id="txt_Com_X" name="" class="datos" placeholder="Posicion X" value="200">
+                <br>
                 <input type="text" id="txt_Com_Y" class="datos" placeholder="Posicion Y" value="100" >
+                <br>
+                <label>Tamaño</label>
                 <select id="cmb_Tam" name="cmb_Tam">
                     <option value="8">8</option>
                     <option value="9">9</option>
@@ -63,6 +66,7 @@ $message = "";
                     <option value="16">16</option>
                     <option value="18">18</option>
                 </select>
+                <br>
                 <button id="btn_comentario">Añadir</button>
             </div>
         </div>
