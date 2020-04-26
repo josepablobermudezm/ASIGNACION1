@@ -19,14 +19,66 @@ function readFile(input) {
       img.onload = function(){
         var val = scaleToFit(img);
         ctx.drawImage(img, 0, 0,val.x,val.y);
+        
+        //img.style.display = 'none';
+        /*var s = getComputedStyle(canvas);
+        var w = s.width;
+        var h = s.height;
+        ctx.width = w.split('px')[0];
+        ctx.height = h.split('px')[0];*/
       }         
     }
     reader.readAsDataURL(input.files[0]);
   }
 }
 
-var canvas;
+var canvas = document.getElementById("lienzo");
 var X,Y;
+
+
+
+function inicializarCanvas(){  
+  var ctx = canvas.getContext("2d");
+  var s = getComputedStyle(canvas);
+  var w = s.width;
+  var h = s.height;
+  canvas.width=w.split("px")[0];
+  canvas.height=h.split("px")[0];
+  X=canvas.width/2;
+  Y=canvas.height/2;
+  dibujar(ctx);
+}
+
+function dibujar(ctx){
+  ctx.fillStyle = "#108EFF";
+  ctx.arc(X,Y,X,0,2*Math.PI);
+  ctx.fill();
+}  
+
+
+function drawImage(image, w, h) {
+  ctx.drawImage(image, foto.x, foto.y, w, h);
+
+  ctx.fillStyle = 'white';
+
+  ctx.beginPath();
+  ctx.arc(foto.x, foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w + foto.x, h / 2 + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w / 2 + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
+  ctx.fill();
+}
+
+
 
 function scaleToFit(img){
   var canvas = document.getElementById("lienzo");
@@ -66,89 +118,17 @@ function scaleToFit(img){
   function miFuncionLoad(){
     var btnAgregarGlobo = document.getElementById('btn_agregar');
     var fileUpload = document.getElementById('txt_foto');
-
-    var posX = document.getElementById("txt_pos_x");
+    /*var posX = document.getElementById("txt_pos_x");
     var posY = document.getElementById("txt_pos_y");
     posX.addEventListener('keyup', ModificarX, false);
-    posY.addEventListener('keyup', ModificarY, false);
+    posY.addEventListener('keyup', ModificarY, false);*/
 
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
     }
-
     download();
-    btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
-  }
 
-  function insertarGlobo(){
-    var canvas = document.getElementById("lienzo");
-    var ctx = canvas.getContext('2d');
-    ctx.beginPath();
-    if(z==1){
-      x=0;
-      y=0;
-    }
-    if(z==2){
-      x -= 60;
-      y -= 60;
-    }else if(z == 3){
-      x -= 75;
-      y -= 75;
-    }
-
-    ctx.moveTo((65+x)*z,(5+y)*z);
-    ctx.quadraticCurveTo((5+x)*z,(0+y)*z,(0+x)*z,(42.5+y)*z);
-    ctx.quadraticCurveTo((5+x)*z,(75+y)*z,(25+x)*z,(80+y)*z);
-    ctx.quadraticCurveTo((30+x)*z,(95+y)*z,(5+x)*z,(105+y)*z);
-    ctx.quadraticCurveTo((40+x)*z,(95+y)*z,(40+x)*z,(80+y)*z);
-    ctx.quadraticCurveTo((105+x)*z,(75+y)*z,(100+x)*z,(42.5+y)*z);
-    ctx.quadraticCurveTo((105+x)*z,(0+y)*z,(50+x)*z,(5+y)*z);
-
-
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.strokeStyle = "black";
-    ctx.stroke();
-
-    //function.addEventListener("click" );
-  }
-
-  function checkBox(cb){
-    for (n = 0; n < 3; n++) {
-      if (eval("document.form.contact[" + n + "].checked") == true) {
-        document.form.contact[n].checked = false;
-        if (n == cb) {
-          document.form.contact[n].checked = true;
-        }
-      }
-    }
-    if (document.form.contact[np].id == document.getElementById("1").id) {
-      z = 1;
-    } else if(document.form.contact[np].id == document.getElementById("2").id){
-      z = 2;
-    }else{
-      z = 3;
-    }
-  }
-
-  function getMousePos(canvas, evt) {
-    return {
-      x: evt.clientX,
-      y: evt.clientY
-    };
-  }
-
-  function ModificarX(){
-    x = document.getElementById("txt_pos_x");
-    insertarGlobo()
-  }
-
-  function ModificarY(){
-    y = document.getElementById("txt_pos_y");
-    insertarGlobo();
-  }
-  
-   /* var cv = document.getElementById('lienzo');
+    var cv = document.getElementById('lienzo');
     var ctx = cv.getContext('2d');
     var image = new Image();
     var foto = {x: 50, y: 50, w: 100, h: 100};
@@ -231,46 +211,73 @@ window.onmouseup = function(evt) {
   isUp = null;
 }
 
-function inicializarCanvas(){  
-  var ctx = canvas.getContext("2d");
-  var s = getComputedStyle(canvas);
-  var w = s.width;
-  var h = s.height;
-  canvas.width=w.split("px")[0];
-  canvas.height=h.split("px")[0];
-  X=canvas.width/2;
-  Y=canvas.height/2;
-  dibujar(ctx);
 btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
 }
 
-function dibujar(ctx){
-  ctx.fillStyle = "#108EFF";
-  ctx.arc(X,Y,X,0,2*Math.PI);
-  ctx.fill();
-}  
+function ModificarX(){
+  x = document.getElementById("txt_pos_x");
+  insertarGlobo();
+}
 
+function ModificarY(){
+  y = document.getElementById("txt_pos_y");
+  insertarGlobo();
+}
 
-function drawImage(image, w, h) {
-  ctx.drawImage(image, foto.x, foto.y, w, h);
+function insertarGlobo(){
 
-  ctx.fillStyle = 'white';
-
+  var canvas = document.getElementById("lienzo");
+  var ctx = canvas.getContext('2d');
   ctx.beginPath();
-  ctx.arc(foto.x, foto.y, 5, 0, Math.PI * 2, 1);
+  if(z==1){
+    
+  }
+  if(z==2){
+    x -= 60;
+    y -= 60;
+  }else if(z == 3){
+    x -= 75;
+    y -= 75;
+  }
+
+  ctx.moveTo((65+x)*z,(5+y)*z);
+  ctx.quadraticCurveTo((5+x)*z,(0+y)*z,(0+x)*z,(42.5+y)*z);
+  ctx.quadraticCurveTo((5+x)*z,(75+y)*z,(25+x)*z,(80+y)*z);
+  ctx.quadraticCurveTo((30+x)*z,(95+y)*z,(5+x)*z,(105+y)*z);
+  ctx.quadraticCurveTo((40+x)*z,(95+y)*z,(40+x)*z,(80+y)*z);
+  ctx.quadraticCurveTo((105+x)*z,(75+y)*z,(100+x)*z,(42.5+y)*z);
+  ctx.quadraticCurveTo((105+x)*z,(0+y)*z,(50+x)*z,(5+y)*z);
+
+
+  ctx.fillStyle = "white";
   ctx.fill();
+  ctx.strokeStyle = "black";
+  ctx.stroke();
 
-  ctx.beginPath();
-  ctx.arc(w + foto.x, h / 2 + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
+    //function.addEventListener("click" );
+  }
 
-  ctx.beginPath();
-  ctx.arc(w / 2 + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
+  function checkBox(cb){
+    for (n = 0; n < 3; n++) {
+      if (eval("document.form.contact[" + n + "].checked") == true) {
+        document.form.contact[n].checked = false;
+        if (n == cb) {
+          document.form.contact[n].checked = true;
+        }
+      }
+    }
+    if (document.form.contact[np].id == document.getElementById("1").id) {
 
-  ctx.beginPath();
-  ctx.arc(w + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
-}*/
+    } else if(document.form.contact[np].id == document.getElementById("2").id){
 
+    }else{
 
+    }
+  }
+
+  function getMousePos(canvas, evt) {
+    return {
+      x: evt.clientX,
+      y: evt.clientY
+    };
+  }
