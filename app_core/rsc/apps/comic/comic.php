@@ -22,6 +22,7 @@ $message = "";
     <!--div class="bubble" style=""></div-->
     <div id="principal">
         <div id="left">
+            <label id="titulo">ÁREA DE TRABAJO</label>
             <canvas id="lienzo" width="100%" height="100%" onmousemove="">
                 <!--div class="bubble"></div-->
             </canvas>
@@ -31,9 +32,9 @@ $message = "";
             <a id="download">
                 <input type="file" name="txt_foto" class="campo_texto" id="txt_foto" accept="image/*">
             </a>
-            <input type="text" name="" id="txt_nombre" placeholder="Nombre de Imagen">
+            <input  type="text" name="" id="txt_nombre" placeholder="Nombre de Imagen">
             <button id="btn_descarga">Descargar Imagen</button>
-            <button id="btn_agregar">Agregar Globo de conversacion</button>
+            <button id="btn_agregar">Agregar Globo</button>
         </div>  
     </div>
     <!--div id="triangulo"></div-->
