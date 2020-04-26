@@ -21,7 +21,6 @@ function readFile(input) {
         ctx.drawImage(img, 0, 0,val.x,val.y);
       }         
     }
-
     reader.readAsDataURL(input.files[0]);
   }
 }
