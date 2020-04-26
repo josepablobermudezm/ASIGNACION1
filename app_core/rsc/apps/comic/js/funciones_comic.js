@@ -123,8 +123,6 @@ function insertarGlobo(){
   ctx.fill();
   ctx.strokeStyle = "black";
   ctx.stroke();
-
-    //function.addEventListener("click" );
   }
 
   function checkBox(cb){
@@ -137,11 +135,11 @@ function insertarGlobo(){
       }
     }
     if (document.form.contact[np].id == document.getElementById("1").id) {
-
+      z = 1;
     } else if(document.form.contact[np].id == document.getElementById("2").id){
-
+      z = 2;
     }else{
-
+      z = 3;
     }
   }
 
