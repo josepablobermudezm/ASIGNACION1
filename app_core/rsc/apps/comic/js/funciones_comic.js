@@ -3,6 +3,7 @@ var x = 0;
 var y = 0;
 var click=false;
 var auxImage;
+
 window.addEventListener('load', miFuncionLoad, false);
 
 function readFile(input) {
@@ -20,6 +21,8 @@ function readFile(input) {
       var ctx = canvas.getContext("2d");
       img.onload = function(){
         click=false;
+        globoAgregado = false;
+        clickCom = false;
         var val = scaleToFit(img);
         ctx.drawImage(img, 0, 0,val.x,val.y);
         auxImage = ctx.getImageData(0, 0, 600,600);
@@ -31,7 +34,6 @@ function readFile(input) {
 
 var canvas = document.getElementById("lienzo");
 var X,Y;
-
 
 
 function scaleToFit(img){
@@ -69,7 +71,7 @@ function scaleToFit(img){
   },false);
   }
 
-
+  var globoAgregado = false;
   function recargarImagen(){
     var canvas = document.getElementById("lienzo");
     var ctx = canvas.getContext('2d'); 
@@ -77,23 +79,40 @@ function scaleToFit(img){
   }
 
   function miFuncionLoad(){
-    var btnAgregarGlobo = document.getElementById('btn_agregar');
+    var btnAgregarGlobo = document.getElementById('btn_agregar_globo');
+    var btnAgregarComentario = document.getElementById('btn_agregar_comentario');
     var btnTerminado = document.getElementById('btn_terminado');
+    var btnFinalizarCom = document.getElementById('btn_comentario');
+    var txtComentario = document.getElementById('txt_comentario');
+
 
     var fileUpload = document.getElementById('txt_foto');
     var posX = document.getElementById("txt_pos_x");
     var posY = document.getElementById("txt_pos_y");
+
+    var posComX = document.getElementById("txt_Com_X");
+    var posComY = document.getElementById("txt_Com_Y");    
+    
     posX.addEventListener('keyup', ModificarX, false);
     posY.addEventListener('keyup', ModificarY, false);
+
+
+    posComX.addEventListener('keyup', ModificarComX, false);
+    posComY.addEventListener('keyup', ModificarComY, false);
 
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
     }
 
     download();
-    btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
+
+    txt_comentario.addEventListener("keyup",insertarComentario,true);
+
+    btnAgregarComentario.addEventListener("click",insertarComentario,false);
 
     btnTerminado.addEventListener("click",function(){
+      var div = document.getElementById("Caja_Globo");
+      div.style = "display:none;";
       click=false;
       var canvas = document.getElementById("lienzo");
       var ctx = canvas.getContext('2d'); 
@@ -102,7 +121,25 @@ function scaleToFit(img){
       posY.value = "0";
       x=0;
       y=0;
+      globoAgregado = true;
     },false);
+
+    btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
+
+    btnFinalizarCom.addEventListener("click",function(){
+      var div = document.getElementById("Caja_Comentarios");
+      div.style = "display:none;";
+      clickCom = false;
+      var canvas = document.getElementById("lienzo");
+      var ctx = canvas.getContext('2d'); 
+      auxImage = ctx.getImageData(0, 0, 600,600);
+      posComX.value = "0";
+      posComY.value = "0";
+      x=0;
+      y=0;
+    },false);
+
+
   }
 
   function ModificarX(){
@@ -117,30 +154,69 @@ function scaleToFit(img){
       insertarGlobo();
     }
   }
+  var clickCom = false; 
+  function ModificarComX(){
+    if(clickCom){  
+      insertarComentario();
+    }
+    
+  }
+
+  function ModificarComY(){
+    if(clickCom){  
+      insertarComentario();
+    }
+  }
+
+  var xCom = 40;
+  var ycom = 40;
+
+  function insertarComentario(){
+    if(globoAgregado){
+      clickCom = true;
+      recargarImagen();
+      var canvas = document.getElementById("lienzo");
+      var ctx = canvas.getContext('2d'); 
+
+      var div = document.getElementById("Caja_Comentarios");
+      div.style = "display:block;";
+      var posX = parseInt(document.getElementById("txt_Com_X").value);
+      var posY = parseInt(document.getElementById("txt_Com_Y").value); 
+      var comentario = document.getElementById("txt_comentario").value;
+      ctx.textAlign="center";
+      var tam = parseInt(document.getElementById("cmb_Tam").value);
+      ctx.font="bold "+ tam + "pt Comic Sans MS";
+      ctx.fillStyle = "black";
+      ctx.fillText(comentario,posX,posY);
+    }
+  }
 
   var auxContext;
 
   function insertarGlobo(){
-    recargarImagen();
-    click = true;
-    var canvas = document.getElementById("lienzo");
-    var ctx = canvas.getContext('2d');
-    auxContext = ctx;
-    ctx.beginPath();
+    if(auxImage!=null){
+      var div = document.getElementById("Caja_Globo");
+      div.style = "display:block;";
+      recargarImagen();
+      click = true;
+      var canvas = document.getElementById("lienzo");
+      var ctx = canvas.getContext('2d');
+      auxContext = ctx;
+      ctx.beginPath();
 
-    if(isNaN(document.getElementById("txt_pos_x").value || document.getElementById("txt_pos_x").value =="")){
-      x = 0;
-    }else{
-      x = parseInt(document.getElementById("txt_pos_x").value); 
-    }
+      if(isNaN(document.getElementById("txt_pos_x").value || document.getElementById("txt_pos_x").value =="")){
+        x = 0;
+      }else{
+        x = parseInt(document.getElementById("txt_pos_x").value); 
+      }
 
-    if(isNaN(document.getElementById("txt_pos_y").value) || document.getElementById("txt_pos_y").value ==""){
-      y = 0;
-    }else{
-      y = parseInt(document.getElementById("txt_pos_y").value);
-    }
+      if(isNaN(document.getElementById("txt_pos_y").value) || document.getElementById("txt_pos_y").value ==""){
+        y = 0;
+      }else{
+        y = parseInt(document.getElementById("txt_pos_y").value);
+      }
 
-    if(z==1){
+      if(z==1){
     /*x=100;
     y=250;*/  
   }
@@ -165,6 +241,8 @@ function scaleToFit(img){
   ctx.fill();
   ctx.strokeStyle = "black";
   ctx.stroke();
+}
+
 }
 
 function checkBox(cb){
