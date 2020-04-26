@@ -35,12 +35,13 @@ $message = "";
             <button id="btn_agregar">Agregar Globo</button>
         </div>
         <div style="width: 100%; height: 50%; background-color: gray;"> 
-            <input type="text" name="" class="datos" placeholder="Posicion X">
-            <input type="text" name="" class="datos" placeholder="Posicion Y">
+            <input type="text" id="txt_pos_x" name="" class="datos" placeholder="Posicion X">
+            <input type="text" name="txt_pos_y" class="datos" placeholder="Posicion Y">
             <label>Tamaño</label> 
             <br>
             <form name="form">
-                <input type="checkbox" id="1" name="contact" onClick="javascript:checkBox(0)" value="1" checked>1<br>
+                <input type="checkbox" id="1" name="contact" onClick="javascript:checkBox(0)" value="1" checked>1
+                <br>
                 <input type="checkbox" id="2" name="contact" onClick="javascript:checkBox(1)" value="1">2
                 <br>
                 <input type="checkbox" id="3" name="contact" onClick="javascript:checkBox(2)" value="1">3    
