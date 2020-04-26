@@ -35,8 +35,8 @@ $message = "";
             <button id="btn_agregar">Agregar Globo</button>
         </div>
         <div style="width: 100%; height: 50%; background-color: gray;"> 
-            <input type="text" id="txt_pos_x" name="" class="datos" placeholder="Posicion X">
-            <input type="text" id="txt_pos_y" class="datos" placeholder="Posicion Y">
+            <input type="text" id="txt_pos_x" name="" class="datos" placeholder="Posicion X" value="0">
+            <input type="text" id="txt_pos_y" class="datos" placeholder="Posicion Y" value="0" >
             <label>Tamaño</label> 
             <br>
             <form name="form">
@@ -46,7 +46,7 @@ $message = "";
                 <br>
                 <input type="checkbox" id="3" name="contact" onClick="javascript:checkBox(2)" value="1">3    
             </form>
-            <button>Terminado</button>
+            <button id="btn_terminado">Terminado</button>
         </div>
     </div>
 

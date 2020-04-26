@@ -1,7 +1,8 @@
 var z = 1;
 var x = 0;
 var y = 0;
-
+var click=false;
+var auxImage;
 window.addEventListener('load', miFuncionLoad, false);
 
 function readFile(input) {
@@ -10,6 +11,7 @@ function readFile(input) {
 
     reader.onload = function (e) {
       var canvas = document.getElementById("lienzo");
+      canvas.width=canvas.width;
       var img = new Image(canvas.clientWidth,canvas.clientHeight);
       img.id = 'file-preview';
       //e.target.result contents the base64 data from the image uploaded
@@ -19,6 +21,7 @@ function readFile(input) {
       img.onload = function(){
         var val = scaleToFit(img);
         ctx.drawImage(img, 0, 0,val.x,val.y);
+        auxImage = img;
       }         
     }
     reader.readAsDataURL(input.files[0]);
@@ -65,8 +68,50 @@ function scaleToFit(img){
   },false);
   }
 
+  function recargarImagen(){
+    var canvas = document.getElementById("lienzo");
+    /*var link = document.getElementById("download");
+    link.href = canvas.toDataURL("image/png");
+    console.log(link.href);
+    var ctx = canvas.getContext('2d'); 
+    var image = new Image();
+    image.src = link.href;*/
+    var canvas = document.getElementById("lienzo");
+    canvas.width=canvas.width;
+    var img = new Image(canvas.clientWidth,canvas.clientHeight);
+    img.id = 'file-preview';
+    console.log(canvas.toDataURL());
+    img.src = canvas.toDataURL();
+    var ctx = canvas.getContext("2d");
+    var val = scaleToFit(img);
+    ctx.drawImage(img, 0, 0,val.x,val.y);
+      //e.target.result contents the base64 data from the image uploaded
+      //img.src = e.target.result;
+      //console.log(e.target.result);     
+
+      /*var ctx = canvas.getContext("2d");
+      img.onload = function(){
+        var val = scaleToFit(img);
+        ctx.drawImage(img, 0, 0,val.x,val.y);
+        auxImage = img;
+      } */
+      /*
+      var reader = new FileReader();
+      reader.onload = function (e) {
+
+      }
+      reader.readAsDataURL(canvas.toDataURL("image/png"));
+
+
+    /*var val = scaleToFit(image);
+    ctx.drawImage(image, 0, 0,val.x,val.y);
+    auxImage = image;*/
+  }
+
   function miFuncionLoad(){
     var btnAgregarGlobo = document.getElementById('btn_agregar');
+    var btnTerminado = document.getElementById('btn_terminado');
+
     var fileUpload = document.getElementById('txt_foto');
     var posX = document.getElementById("txt_pos_x");
     var posY = document.getElementById("txt_pos_y");
@@ -76,31 +121,56 @@ function scaleToFit(img){
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
     }
+
     download();
-
     btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
-}
 
-function ModificarX(){
-  console.log("XD");
-  x = document.getElementById("txt_pos_x").value;
-  insertarGlobo();
-}
+    btnTerminado.addEventListener("click",function(){
+      click=false;
+    },false);
+  }
 
-function ModificarY(){
-  console.log("PLOK");
-  y = document.getElementById("txt_pos_y").value;
-  insertarGlobo();
-}
+  function ModificarX(){
+    if(click){  
+      insertarGlobo();
+    }
+    
+  }
 
-function insertarGlobo(){
+  function ModificarY(){
+    if(click){  
+      insertarGlobo();
+    }
+  }
 
-  var canvas = document.getElementById("lienzo");
-  var ctx = canvas.getContext('2d');
-  ctx.beginPath();
-  if(z==1){
-    x=0;
-    y=0;  
+  var auxContext;
+
+  function insertarGlobo(){
+    recargarImagen();
+    click = true;
+    var canvas = document.getElementById("lienzo");
+    var ctx = canvas.getContext('2d');
+
+    
+
+    auxContext = ctx;
+    ctx.beginPath();
+
+    if(isNaN(document.getElementById("txt_pos_x").value)){
+      x = 0;
+    }else{
+      x = parseInt(document.getElementById("txt_pos_x").value); 
+    }
+
+    if(isNaN(document.getElementById("txt_pos_y").value)){
+      y = 0;
+    }else{
+      y = parseInt(document.getElementById("txt_pos_y").value);
+    }
+
+    if(z==1){
+    /*x=100;
+    y=250;*/  
   }
   if(z==2){
     x -= 60;
@@ -123,32 +193,35 @@ function insertarGlobo(){
   ctx.fill();
   ctx.strokeStyle = "black";
   ctx.stroke();
-  }
+}
 
-  function checkBox(cb){
-    for (n = 0; n < 3; n++) {
-      if (eval("document.form.contact[" + n + "].checked") == true) {
-        document.form.contact[n].checked = false;
-        if (n == cb) {
-          document.form.contact[n].checked = true;
-        }
+function checkBox(cb){
+  var np;
+  for (n = 0; n < 3; n++) {
+    if (eval("document.form.contact[" + n + "].checked") == true) {
+      document.form.contact[n].checked = false;
+      if (n == cb) {
+        np = n;
+        document.form.contact[n].checked = true;
       }
     }
-    if (document.form.contact[np].id == document.getElementById("1").id) {
-      z = 1;
-    } else if(document.form.contact[np].id == document.getElementById("2").id){
-      z = 2;
-    }else{
-      z = 3;
-    }
   }
 
-  function getMousePos(canvas, evt) {
-    return {
-      x: evt.clientX,
-      y: evt.clientY
-    };
+  if (document.form.contact[np].id == document.getElementById("1").id) {
+    z = 1;
+  } else if(document.form.contact[np].id == document.getElementById("2").id){
+    z = 2;
+  }else{
+    z = 3;
   }
+}
+
+function getMousePos(canvas, evt) {
+  return {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+}
 
 
 /*
