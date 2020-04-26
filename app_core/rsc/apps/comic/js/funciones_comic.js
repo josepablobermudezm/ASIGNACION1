@@ -259,10 +259,13 @@ function checkBox(cb){
 
   if (document.form.contact[np].id == document.getElementById("1").id) {
     z = 1;
+    insertarGlobo();
   } else if(document.form.contact[np].id == document.getElementById("2").id){
     z = 2;
+    insertarGlobo();
   }else{
     z = 3;
+    insertarGlobo();
   }
 }
 
