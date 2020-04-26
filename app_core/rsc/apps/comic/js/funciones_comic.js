@@ -138,15 +138,12 @@ function scaleToFit(img){
       x=0;
       y=0;
     },false);
-
-
   }
 
   function ModificarX(){
     if(click){  
       insertarGlobo();
     }
-    
   }
 
   function ModificarY(){
@@ -154,12 +151,12 @@ function scaleToFit(img){
       insertarGlobo();
     }
   }
+
   var clickCom = false; 
   function ModificarComX(){
     if(clickCom){  
       insertarComentario();
-    }
-    
+    }  
   }
 
   function ModificarComY(){
@@ -167,9 +164,6 @@ function scaleToFit(img){
       insertarComentario();
     }
   }
-
-  var xCom = 40;
-  var ycom = 40;
 
   function insertarComentario(){
     if(globoAgregado){
@@ -188,6 +182,8 @@ function scaleToFit(img){
       ctx.font="bold "+ tam + "pt Comic Sans MS";
       ctx.fillStyle = "black";
       ctx.fillText(comentario,posX,posY);
+    } else if(){
+
     }
   }
 
@@ -236,7 +232,6 @@ function scaleToFit(img){
   ctx.quadraticCurveTo((105+x)*z,(75+y)*z,(100+x)*z,(42.5+y)*z);
   ctx.quadraticCurveTo((105+x)*z,(0+y)*z,(50+x)*z,(5+y)*z);
 
-
   ctx.fillStyle = "white";
   ctx.fill();
   ctx.strokeStyle = "black";
@@ -275,130 +270,3 @@ function getMousePos(canvas, evt) {
     y: evt.clientY
   };
 }
-
-
-/*
-function inicializarCanvas(){  
-  var ctx = canvas.getContext("2d");
-  var s = getComputedStyle(canvas);
-  var w = s.width;
-  var h = s.height;
-  canvas.width=w.split("px")[0];
-  canvas.height=h.split("px")[0];
-  X=canvas.width/2;
-  Y=canvas.height/2;
-  dibujar(ctx);
-}
-
-function dibujar(ctx){
-  ctx.fillStyle = "#108EFF";
-  ctx.arc(X,Y,X,0,2*Math.PI);
-  ctx.fill();
-}  
-
-
-function drawImage(image, w, h) {
-  ctx.drawImage(image, foto.x, foto.y, w, h);
-
-  ctx.fillStyle = 'white';
-
-  ctx.beginPath();
-  ctx.arc(foto.x, foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(w + foto.x, h / 2 + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(w / 2 + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(w + foto.x, h + foto.y, 5, 0, Math.PI * 2, 1);
-  ctx.fill();
-}
-
- /* var cv = document.getElementById('lienzo');
-    var ctx = cv.getContext('2d');
-    var image = new Image();
-    var foto = {x: 50, y: 50, w: 100, h: 100};
-    var isUp = null;
-    image.src = 'beads.jpg';
-
-    window.onmousedown = function(evt) {
-      var ax = evt.clientX - cv.offsetLeft;
-      var ay = evt.clientY - cv.offsetTop;
-
-      console.log(ax, ay);
-
-      if (ax >= foto.w - 5 + foto.x
-        && ax <= foto.w + foto.x + 5
-        && ay >= foto.h / 2 + foto.y - 5
-        && ay <= foto.h / 2 + foto.y + 5
-        ) {
-        isUp = 'right';
-    }
-
-    else if (ax >= foto.w / 2 + foto.x - 5
-      && ax <= foto.w / 2 + foto.x + 5
-      && ay >= foto.h + foto.y - 5
-      && ay <= foto.h + foto.y + 5
-      ) {
-      isUp = 'bottom';
-  }
-
-  else if (ax >= foto.w + foto.x - 5
-    && ax <= foto.w + foto.x + 5
-    && ay >= foto.h + foto.y - 5
-    && ay <= foto.h + foto.y + 5
-    ) {
-    isUp = 'bottom-right';
-}
-
-else if (ax >= foto.x - 5 && ax <= foto.x + 5
-  && ay >= foto.y - 5 && ay <= foto.y + 5
-  ) {
-  isUp = 'top-left';
-}
-}
-
-window.onmousemove = function(evt) {
-  var ax = evt.clientX - cv.offsetLeft;
-  var ay = evt.clientY - cv.offsetTop;
-
-  if (isUp === 'right') {
-    foto.w = ax - foto.x;
-    ctx.clearRect(0, 0, 900, 600);
-    drawImage(image, foto.w, foto.h);
-  }
-
-  else if (isUp === 'bottom') {
-    foto.h = ay - foto.y;
-    ctx.clearRect(0, 0, 900, 600);
-    drawImage(image, foto.w, foto.h);
-  }
-
-  else if (isUp === 'bottom-right') {
-    foto.w = ax - foto.x;
-    foto.h = ay - foto.y;
-    ctx.clearRect(0, 0, 900, 600);
-    drawImage(image, foto.w, foto.h);
-  }
-
-  else if (isUp === 'top-left') {
-    var dx = foto.x - ax;
-    var dy = foto.y - ay;
-    foto.x = ax;
-    foto.y = ay;
-    foto.w += dx;
-    foto.h += dy;
-    ctx.clearRect(0, 0, 900, 600);
-    drawImage(image, foto.w, foto.h);
-  }
-}
-
-window.onmouseup = function(evt) {
-  isUp = null;
-}*/
-
