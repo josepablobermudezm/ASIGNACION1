@@ -119,13 +119,15 @@ function scaleToFit(img){
   function miFuncionLoad(){
     var btnAgregarGlobo = document.getElementById('btn_agregar');
     var fileUpload = document.getElementById('txt_foto');
+    var posX = document.getElementById("txt_pos_x");
+    var posY = document.getElementById("txt_pos_y");
+    posX.addEventListener('keyup', ModificarX, false);
+    posY.addEventListener('keyup', ModificarY, false);
+
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
     }
     download();
-
-
-
 
     var cv = document.getElementById('lienzo');
     var ctx = cv.getContext('2d');
@@ -210,9 +212,15 @@ window.onmouseup = function(evt) {
   isUp = null;
 }
 
-
-
 btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
+}
+
+function ModificarX(){
+  x = document.getElementById("txt_pos_x");
+}
+
+function ModificarY(){
+  y = document.getElementById("txt_pos_x");
 }
 
 function insertarGlobo(){
