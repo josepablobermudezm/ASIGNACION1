@@ -119,10 +119,10 @@ function scaleToFit(img){
   function miFuncionLoad(){
     var btnAgregarGlobo = document.getElementById('btn_agregar');
     var fileUpload = document.getElementById('txt_foto');
-    var posX = document.getElementById("txt_pos_x");
+    /*var posX = document.getElementById("txt_pos_x");
     var posY = document.getElementById("txt_pos_y");
     posX.addEventListener('keyup', ModificarX, false);
-    posY.addEventListener('keyup', ModificarY, false);
+    posY.addEventListener('keyup', ModificarY, false);*/
 
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
@@ -217,7 +217,7 @@ btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
 
 function ModificarX(){
   x = document.getElementById("txt_pos_x");
-  insertarGlobo()
+  insertarGlobo();
 }
 
 function ModificarY(){
@@ -231,8 +231,7 @@ function insertarGlobo(){
   var ctx = canvas.getContext('2d');
   ctx.beginPath();
   if(z==1){
-    x=0;
-    y=0;
+    
   }
   if(z==2){
     x -= 60;
