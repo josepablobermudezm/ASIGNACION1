@@ -230,7 +230,10 @@ function insertarGlobo(){
   var canvas = document.getElementById("lienzo");
   var ctx = canvas.getContext('2d');
   ctx.beginPath();
-  
+  if(z==1){
+    x=0;
+    y=0;
+  }
   if(z==2){
     x -= 60;
     y -= 60;
