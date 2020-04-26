@@ -217,10 +217,12 @@ btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
 
 function ModificarX(){
   x = document.getElementById("txt_pos_x");
+  insertarGlobo()
 }
 
 function ModificarY(){
-  y = document.getElementById("txt_pos_x");
+  y = document.getElementById("txt_pos_y");
+  insertarGlobo();
 }
 
 function insertarGlobo(){
@@ -228,10 +230,7 @@ function insertarGlobo(){
   var canvas = document.getElementById("lienzo");
   var ctx = canvas.getContext('2d');
   ctx.beginPath();
-  if(z==1){
-    x=0;
-    y=0;
-  }
+  
   if(z==2){
     x -= 60;
     y -= 60;
