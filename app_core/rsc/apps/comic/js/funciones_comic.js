@@ -19,9 +19,10 @@ function readFile(input) {
       //console.log(e.target.result);         
       var ctx = canvas.getContext("2d");
       img.onload = function(){
+        click=false;
         var val = scaleToFit(img);
         ctx.drawImage(img, 0, 0,val.x,val.y);
-        auxImage = img;
+        auxImage = ctx.getImageData(0, 0, 600,600);
       }         
     }
     reader.readAsDataURL(input.files[0]);
@@ -68,44 +69,11 @@ function scaleToFit(img){
   },false);
   }
 
+
   function recargarImagen(){
     var canvas = document.getElementById("lienzo");
-    /*var link = document.getElementById("download");
-    link.href = canvas.toDataURL("image/png");
-    console.log(link.href);
     var ctx = canvas.getContext('2d'); 
-    var image = new Image();
-    image.src = link.href;*/
-    var canvas = document.getElementById("lienzo");
-    canvas.width=canvas.width;
-    var img = new Image(canvas.clientWidth,canvas.clientHeight);
-    img.id = 'file-preview';
-    console.log(canvas.toDataURL());
-    img.src = canvas.toDataURL();
-    var ctx = canvas.getContext("2d");
-    var val = scaleToFit(img);
-    ctx.drawImage(img, 0, 0,val.x,val.y);
-      //e.target.result contents the base64 data from the image uploaded
-      //img.src = e.target.result;
-      //console.log(e.target.result);     
-
-      /*var ctx = canvas.getContext("2d");
-      img.onload = function(){
-        var val = scaleToFit(img);
-        ctx.drawImage(img, 0, 0,val.x,val.y);
-        auxImage = img;
-      } */
-      /*
-      var reader = new FileReader();
-      reader.onload = function (e) {
-
-      }
-      reader.readAsDataURL(canvas.toDataURL("image/png"));
-
-
-    /*var val = scaleToFit(image);
-    ctx.drawImage(image, 0, 0,val.x,val.y);
-    auxImage = image;*/
+    ctx.putImageData(auxImage, 0, 0);
   }
 
   function miFuncionLoad(){
@@ -127,6 +95,13 @@ function scaleToFit(img){
 
     btnTerminado.addEventListener("click",function(){
       click=false;
+      var canvas = document.getElementById("lienzo");
+      var ctx = canvas.getContext('2d'); 
+      auxImage = ctx.getImageData(0, 0, 600,600);
+      posX.value = "0";
+      posY.value = "0";
+      x=0;
+      y=0;
     },false);
   }
 
@@ -150,19 +125,16 @@ function scaleToFit(img){
     click = true;
     var canvas = document.getElementById("lienzo");
     var ctx = canvas.getContext('2d');
-
-    
-
     auxContext = ctx;
     ctx.beginPath();
 
-    if(isNaN(document.getElementById("txt_pos_x").value)){
+    if(isNaN(document.getElementById("txt_pos_x").value || document.getElementById("txt_pos_x").value =="")){
       x = 0;
     }else{
       x = parseInt(document.getElementById("txt_pos_x").value); 
     }
 
-    if(isNaN(document.getElementById("txt_pos_y").value)){
+    if(isNaN(document.getElementById("txt_pos_y").value) || document.getElementById("txt_pos_y").value ==""){
       y = 0;
     }else{
       y = parseInt(document.getElementById("txt_pos_y").value);
