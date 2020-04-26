@@ -22,8 +22,7 @@ $message = "";
     <!--div class="bubble" style=""></div-->
     <div id="principal">
         <div id="left">
-            <canvas id="lienzo" width="100%" height="100%" onmousemove="">
-                <!--div class="bubble"></div-->
+            <canvas id="lienzo" width="100%" height="100%">
             </canvas>
         </div>
         <div id="right">
