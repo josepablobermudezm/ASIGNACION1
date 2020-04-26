@@ -67,22 +67,24 @@ function scaleToFit(img){
   function miFuncionLoad(){
     var btnAgregarGlobo = document.getElementById('btn_agregar');
     var fileUpload = document.getElementById('txt_foto');
-    
+
+    var posX = document.getElementById("txt_pos_x");
+    var posY = document.getElementById("txt_pos_y");
+    posX.addEventListener('keyup', ModificarX, false);
+    posY.addEventListener('keyup', ModificarY, false);
+
     fileUpload.onchange = function (e) {
       readFile(e.srcElement);
     }
 
     download();
-
     btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
   }
 
   function insertarGlobo(){
-
     var canvas = document.getElementById("lienzo");
     var ctx = canvas.getContext('2d');
     ctx.beginPath();
-
     if(z==1){
       x=0;
       y=0;
@@ -90,7 +92,7 @@ function scaleToFit(img){
     if(z==2){
       x -= 60;
       y -= 60;
-    }else{
+    }else if(z == 3){
       x -= 75;
       y -= 75;
     }
@@ -108,6 +110,8 @@ function scaleToFit(img){
     ctx.fill();
     ctx.strokeStyle = "black";
     ctx.stroke();
+
+    //function.addEventListener("click" );
   }
 
   function checkBox(cb){
@@ -133,6 +137,16 @@ function scaleToFit(img){
       x: evt.clientX,
       y: evt.clientY
     };
+  }
+
+  function ModificarX(){
+    x = document.getElementById("txt_pos_x");
+    insertarGlobo()
+  }
+
+  function ModificarY(){
+    y = document.getElementById("txt_pos_y");
+    insertarGlobo();
   }
   
    /* var cv = document.getElementById('lienzo');
@@ -228,6 +242,7 @@ function inicializarCanvas(){
   X=canvas.width/2;
   Y=canvas.height/2;
   dibujar(ctx);
+btnAgregarGlobo.addEventListener("click",insertarGlobo,false);
 }
 
 function dibujar(ctx){
